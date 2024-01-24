@@ -1,0 +1,156 @@
+body {
+    background-color: #73331C
+  }
+  
+.header {
+  margin-top: 10%;
+  font-size: 25px;
+  padding: 10px;
+  font-weight: 700;
+  font-family: helvetica;
+  color: green;
+}
+
+
+
+b { /* 'cafe' part of the title*/
+    color: orange;
+    font-weight: 750;
+}
+
+
+.tos,.sgnup { /* 'sign up here' 'Terms' */
+  font-weight: 600;
+}
+
+.sgnup { /* 'sign up' */
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.tos { /* 'Terms' */
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.sgnin { /* 'sign in' */
+  font-weight: 700;
+  font-family: helvetica;
+}
+
+.container {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+.emaild{
+    justify-content: center;
+    align-items: center;
+}
+
+  
+.emaild,.pswd {
+  border-radius: 20px;
+  padding: 10px;
+  text-align: center;
+  border-width: 0;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+
+
+.loginbtn {
+  margin-left: 9px;
+  border-radius: 20px;
+  padding: 10px;
+  text-align: center;
+  border-width: 0;
+  background-color: orange;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  cursor: pointer;
+}
+
+.loginbtn {
+  width: 80%;
+}
+
+.emaild,
+.pswd,
+.loginbtn {
+  margin-bottom: 10px;
+}
+
+@media only screen and (min-width: 400px) {
+  body {
+
+    background-size: cover;
+  }
+}
+
+
+.visibledevice {display:none;}
+.visibledesktop {display:none;}
+
+@media (max-width : 431px) { /* mobile */
+    
+    .frm {
+        background-color: white;
+        border-radius: 30px;
+        max-width: 400px; /* Adjust the maximum width as needed */
+        width: 80%;
+        margin: auto;
+    }
+
+
+    .shap .logo {
+        color: Green;
+        text-align: center;
+        font-family: helvetica;
+        font-weight: 750;
+        font-size: 40px;
+    }
+    
+      
+
+    .visibledevice {
+        display:block;
+    }
+    
+}
+
+@media (min-width : 431px){ /* Pc, Tablet */
+    .frm {
+        background-color: white;
+        border-radius: 30px;
+        margin-left: 10vw;
+        margin-right: 25px;
+        max-width: 400px; /* Adjust the maximum width as needed */
+        width: 80%;
+    }
+      
+    .shap .logo {
+        color: Green;
+        margin-left: 23vw;
+        font-family: helvetica;
+        font-weight: 750;
+        font-size: 40px;
+    }
+
+    .visibledesktop {
+        display:block;
+    }  
+}
+
+
+
+
+
+
+
+
+
+
