@@ -1,7 +1,10 @@
 {
   "hosting": {
-    "site": "shapcafeonline",
-
-    "public": "public"
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
   }
 }
