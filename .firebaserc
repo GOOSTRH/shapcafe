@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "shapcafe-eb9f5"
-  }
+    "default": "shapcafe-eb9f5",
+    "hosting": "shapcafeonline"
+  },
+  "targets": {},
+  "etags": {}
 }
