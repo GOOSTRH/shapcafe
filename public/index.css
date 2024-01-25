@@ -1,34 +1,42 @@
 body {
-    background-color: #73331C
+    background-color: #3659
   }
   
 .header {
   margin-top: 10%;
   font-size: 25px;
   padding: 10px;
+}
+
+.logo{  /* 'SHAP' part of the header */
   font-weight: 700;
   font-family: helvetica;
   color: green;
 }
 
-
-
-b { /* 'cafe' part of the title*/
+LogoCafe { /* 'cafe' part of the header*/
     color: orange;
     font-weight: 750;
 }
 
 
-.tos,.login2 { /* 'sign up here' 'Terms' */
+.TermsAndServices,.Message1 { /* 'sign up here' 'Terms' */
   font-weight: 600;
 }
 
-.login2 { /* 'sign up' */
+.Message1 { /* 'sign up here' */
   margin-top: 20px;
-  margin-bottom: 10px;
+  color: #777777;
+  text-decoration: none;
+  display: block;
 }
 
-.tos { /* 'Terms' */
+.GoToSignUpPageBtn{
+  margin-bottom: 20px;
+}
+
+
+.TermsAndServices { /* 'Terms' */
   margin-top: 10px;
   margin-bottom: 30px;
 }
