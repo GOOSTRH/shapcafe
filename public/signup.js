@@ -34,7 +34,7 @@ function signup(){
     }
 
     // Moving on to Auth
-    alert('Check 0');
+    
     auth.createUserWithEmailAndPassword(email, password)
     .then(function(){
         // Declare user variable
@@ -44,16 +44,16 @@ function signup(){
             alert('User not found after signup. Please try again later.');
             return;
         }
-        alert('Check 1');
+        
         // Add user to Firebase Database
         var database_ref = firebase.database().ref('users/' + user.uid);
-        alert('Check 2');
+        
         // Create User Data
         var user_data = {
             email: email,
             last_login: Date.now()
         };
-        alert('Check 3');
+        
         // Use set() method to save data to the database
         database_ref.set(user_data)
         .then(function() {
@@ -63,7 +63,7 @@ function signup(){
             console.error('Error saving user data:', error);
             alert('Error creating user. Please try again later.');
         });
-        alert('Check 4');
+        
 
     })
     .catch(function(error){
