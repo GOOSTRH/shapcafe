@@ -80,9 +80,6 @@ LogoCafe { /* 'cafe' part of the header*/
   background-color: orange;
   -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   cursor: pointer;
-}
-
-.loginbtn {
   width: 80%;
 }
 

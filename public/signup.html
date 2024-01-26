@@ -9,24 +9,24 @@
 <body>
     <section class="header">
         <nav class="shap">
-          <div class="logo">SHAP<b>Cafè</b></div>         
+          <div class="logo">SHAP<Logocafe>Cafè</Logocafe></div>         
     </section>
     <section class="frm">
-      <form id="loginform">
+      <form id="signupform">
         <div class="container">
-          <h2 class="sgnin">Sign In</h2>
+          <h2 class="signin">Sign In</h2>
     
           <label for="email">
-            <input class="emaild" type="text" placeholder="SHAP Mail" name="email" required>
+            <input class="email" type="email" id="email" placeholder="SHAP Mail" name="email" required>
           </label>
     
           <label for="password">
-            <input class="pswd" type="password" placeholder="Password" name="password" required>
+            <input class="pswd" type="password" id="password" placeholder="Password" name="password" required>
           </label>
     
-          <a href="#" class='sgnup' style="color: black; text-decoration: none; display: block;">Sign Up here.</a>
+          <a href="#" class='signup' style="color: black; text-decoration: none; display: block;">Sign Up here.</a>
           
-          <button class="loginbtn" onclick="authenticateUser()">Sign Up</button>
+          <button class="RegisterBtn" onclick="signup()">Sign Up</button>
     
           <a href="#" class='tos' style="color: rgb(65, 65, 255)">Terms & Privacy</a>
 
@@ -34,7 +34,20 @@
       </form>
     </section>
      
+    <script type="module">/* script below is for firebase, DO NOT TOUCH */
+      // Import the functions you need from the SDKs you need
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "firebase/app";
+      import { getAnalytics } from "firebase/analytics";
+      import { getDatabase } from "firebase/database";
+      import { getAuth } from "firebase/auth";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+    </script>
+
 </body>
+<script src="signup.js"></script>
 </html>
 
 

@@ -1,69 +1,77 @@
 body {
-    background-color: #73331C
-  }
-  
+  background-color: #3659
+}
+
 .header {
-  margin-top: 10%;
-  font-size: 25px;
-  padding: 10px;
-  font-weight: 700;
-  font-family: helvetica;
-  color: green;
+margin-top: 10%;
+font-size: 25px;
+padding: 10px;
+}
+
+.logo{  /* 'SHAP' part of the header */
+font-weight: 700;
+font-family: helvetica;
+color: green;
+}
+
+LogoCafe { /* 'cafe' part of the header*/
+  color: orange;
+  font-weight: 750;
 }
 
 
+.TermsAndServices,.Message1 { /* 'sign up here' 'Terms' */
+font-weight: 600;
+}
 
-b { /* 'cafe' part of the title*/
-    color: orange;
-    font-weight: 750;
+.Message1 { /* 'sign up here' */
+margin-top: 20px;
+color: #777777;
+text-decoration: none;
+display: block;
+}
+
+.GoToSignUpPageBtn{
+margin-bottom: 20px;
 }
 
 
-.tos,.sgnup { /* 'sign up here' 'Terms' */
-  font-weight: 600;
+.TermsAndServices { /* 'Terms' */
+margin-top: 10px;
+margin-bottom: 30px;
 }
 
-.sgnup { /* 'sign up' */
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-
-.tos { /* 'Terms' */
-  margin-top: 10px;
-  margin-bottom: 30px;
-}
-
-.sgnin { /* 'sign in' */
-  font-weight: 700;
-  font-family: helvetica;
+.login { /* 'sign in' */
+font-weight: 700;
+font-family: helvetica;
 }
 
 .container {
-  margin: auto;
-  display: flex;
-  flex-direction: column;
+margin: auto;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+
+
+.email{
+  justify-content: center;
   align-items: center;
 }
 
 
-
-.emaild{
-    justify-content: center;
-    align-items: center;
-}
-
-  
-.emaild,.pswd {
-  border-radius: 20px;
-  padding: 10px;
-  text-align: center;
-  border-width: 0;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+.email,.pswd {
+border-radius: 20px;
+padding: 10px;
+text-align: center;
+border-width: 0;
+-webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 
 
-.loginbtn {
+.RegisterBtn {
   margin-left: 9px;
   border-radius: 20px;
   padding: 10px;
@@ -72,15 +80,12 @@ b { /* 'cafe' part of the title*/
   background-color: orange;
   -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   cursor: pointer;
-}
-
-.loginbtn {
   width: 80%;
 }
 
-.emaild,
+.email,
 .pswd,
-.loginbtn {
+.RegisterBtn {
   margin-bottom: 10px;
 }
 
