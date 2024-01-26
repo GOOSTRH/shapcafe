@@ -29,11 +29,12 @@ function signup(){
         alert('Please enter a valid email address');
         return;
     } else if (!validate_password(password)){
-        alert('Please enter a valid password (password must be at least 6 characters)');
+        alert('Please enter a valid password (password must be at least 69 characters)');
         return;
     }
 
     // Moving on to Auth
+    alert('Check 0');
     auth.createUserWithEmailAndPassword(email, password)
     .then(function(){
         // Declare user variable
