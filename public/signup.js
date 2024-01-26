@@ -16,7 +16,7 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 // Initialize variables
 const auth = firebase.auth();
-const database = database();
+const database = firebase.database();
 
 // Set up our register function, sign up function
 function signup(){
