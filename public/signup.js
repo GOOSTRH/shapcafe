@@ -21,51 +21,55 @@ const database = firebase.database();
 // Set up our register function, sign up function
 function signup(){
     // Getting all our input fields
-    email = document.getElementById('email').value
-    password = document.getElementById('password').value
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
 
     // Validate input fields
-    if ( validate_email(email) == false ){
-        alert('Please if your email address is entered correctly')
-        return
-        // stops running the code
-    } else if ( validate_password(password) == false ){
-        alert('Please check your password format ( Password shall not be less than 6 characters )')
-        return
-        // stops running the code
+    if (!validate_email(email)){
+        alert('Please enter a valid email address');
+        return;
+    } else if (!validate_password(password)){
+        alert('Please enter a valid password (password must be at least 6 characters)');
+        return;
     }
 
     // Moving on to Auth
-    auth.createUserWithEmailAndPassword(email,password)
+    auth.createUserWithEmailAndPassword(email, password)
     .then(function(){
         // Declare user variable
-        var user = auth.currentUser
+        var user = auth.currentUser;
 
-        // Add this MF to FIrebase Database
-        var database_ref = firebase.database().ref();
+        if (!user) {
+            alert('User not found after signup. Please try again later.');
+            return;
+        }
+
+        // Add user to Firebase Database
+        var database_ref = firebase.database().ref('users/' + user.uid);
 
         // Create User Data
         var user_data = {
-            email : email,
-            last_login : Date.now()
-        }
+            email: email,
+            last_login: Date.now()
+        };
 
         // Use set() method to save data to the database
-        database_ref.child('users/' + user.uid).set(user_data)
-
-        alert('User Created!')
+        database_ref.set(user_data)
+        .then(function() {
+            alert('User Created!');
+        })
+        .catch(function(error) {
+            console.error('Error saving user data:', error);
+            alert('Error creating user. Please try again later.');
+        });
 
     })
     .catch(function(error){
-        // Firebase will use this to alert it's errors
-        var error_code = error.code
-        var error_message = error.message
-
-        alert(error_message)
-    })
-
-
+        console.error('Error creating user:', error);
+        alert(error.message);
+    });
 }
+
 
 function validate_email(email){
     expression = /^[^@]+@\w+(\.\w+)+\w$/
