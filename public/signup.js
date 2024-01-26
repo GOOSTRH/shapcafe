@@ -16,7 +16,7 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 // Initialize variables
 const auth = firebase.auth();
-const database = firebase.database();
+const database = database();
 
 // Set up our register function, sign up function
 function signup(){
@@ -42,7 +42,7 @@ function signup(){
         var user = auth.currentUser
 
         // Add this MF to FIrebase Database
-        var database_ref = database.ref()
+        var database_ref = firebase.database().ref();
 
         // Create User Data
         var user_data = {
@@ -50,6 +50,7 @@ function signup(){
             last_login : Date.now()
         }
 
+        // Use set() method to save data to the database
         database_ref.child('users/' + user.uid).set(user_data)
 
         alert('User Created!')
