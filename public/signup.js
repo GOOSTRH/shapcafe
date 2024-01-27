@@ -44,7 +44,7 @@ function signup(){
             alert('User not found after signup. Please try again later.');
             return;
         }
-        
+        alert('debugging 1');
         // Add user to Firebase Database
         var database_ref = firebase.database().ref('users/' + user.uid);
         
