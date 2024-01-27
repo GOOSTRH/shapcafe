@@ -34,9 +34,10 @@ function signup(){
     }
 
     // Moving on to Auth
-    
+    alert('debugging 1');
     auth.createUserWithEmailAndPassword(email, password)
     .then(function(){
+        alert('debugging 2');
         // Declare user variable
         var user = auth.currentUser;
 
@@ -44,7 +45,7 @@ function signup(){
             alert('User not found after signup. Please try again later.');
             return;
         }
-        alert('debugging 1');
+        alert('debugging 3');
         // Add user to Firebase Database
         var database_ref = firebase.database().ref('users/' + user.uid);
         
@@ -67,9 +68,11 @@ function signup(){
 
     })
     .catch(function(error){
+        alert('debugging error');
         console.error('Error creating user:', error);
         alert(error.message);
     });
+    alert('debugging 5');
 }
 
 
