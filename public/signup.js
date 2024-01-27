@@ -10,12 +10,16 @@ const firebaseConfig = {
     appId: "1:59729342111:web:8664c7357840a23ae3bcaa",
     measurementId: "G-CR7GGCCC30"
 };
+import { GetAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { database } from "firebase/database";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 // Initialize variables
-const auth = firebase.auth();
+const auth = GetAuth();
 const database = firebase.database();
 
 // Set up our register function, sign up function
@@ -35,19 +39,15 @@ function signup(){
 
     // Moving on to Auth
     alert('debugging 1');
-    auth.createUserWithEmailAndPassword(email, password)
+    createUserWithEmailAndPassword(auth, email, password)
     .then(function(){
         alert('debugging 2');
         // Declare user variable
-        var user = auth.currentUser;
+        const user = userCredential.user;
 
-        if (!user) {
-            alert('User not found after signup. Please try again later.');
-            return;
-        }
         alert('debugging 3');
         // Add user to Firebase Database
-        var database_ref = firebase.database().ref('users/' + user.uid);
+        var database_ref = database.ref('users/' + user.uid);
         
         // Create User Data
         var user_data = {
