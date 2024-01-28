@@ -1,17 +1,23 @@
-body {
-  background-color: #365999
+.body {
+  background-color: rgb(240, 240, 240);
+  background-image: url("background_2.png"), url("background_1.png");
+  background-position: bottom  right, top left;
+  background-repeat: no-repeat, no-repeat;
+  background-attachment: fixed,fixed;
+  background-position-x: 0,0;
+  background-position-y: 0,0;
 }
 
 .header {
-margin-top: 10%;
-font-size: 25px;
-padding: 10px;
+  margin-top: 10%;
+  font-size: 25px;
+  padding: 10px;
 }
 
 .logo{  /* 'SHAP' part of the header */
-font-weight: 700;
-font-family: helvetica;
-color: green;
+  font-weight: 700;
+  font-family: helvetica;
+  color: green;
 }
 
 LogoCafe { /* 'cafe' part of the header*/
@@ -21,36 +27,30 @@ LogoCafe { /* 'cafe' part of the header*/
 
 
 .TermsAndServices,.Message1 { /* 'sign up here' 'Terms' */
-font-weight: 600;
+  font-weight: 600;
 }
 
-.Message1 { /* 'sign up here' */
-margin-top: 20px;
-color: #777777;
-text-decoration: none;
-display: block;
-}
 
 .GoToSignUpPageBtn{
-margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 
 .TermsAndServices { /* 'Terms' */
-margin-top: 10px;
-margin-bottom: 30px;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 
 .login { /* 'sign in' */
-font-weight: 700;
-font-family: helvetica;
+  font-weight: 700;
+  font-family: helvetica;
 }
 
 .container {
-margin: auto;
-display: flex;
-flex-direction: column;
-align-items: center;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 
@@ -62,32 +62,43 @@ align-items: center;
 
 
 .email,.pswd {
-border-radius: 20px;
-padding: 10px;
-text-align: center;
-border-width: 0;
--webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 20px;
+  padding: 10px;
+  text-align: center;
+  border-width: 0;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 
 
 .RegisterBtn {
-  margin-left: 9px;
   border-radius: 20px;
   padding: 10px;
   text-align: center;
   border-width: 0;
   background-color: orange;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   cursor: pointer;
   width: 80%;
 }
 
 .email,
-.pswd,
-.RegisterBtn {
+.pswd,.RegisterBtn{
+  margin-top: 10px;
   margin-bottom: 10px;
 }
+
+.SignUpMessageDiv{
+  font-weight: 700;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.signupmessage{
+  color: #acacac;
+  font-size: small;
+}
+
 
 @media only screen and (min-width: 400px) {
   body {
@@ -103,46 +114,64 @@ border-width: 0;
 @media (max-width : 431px) { /* mobile */
     
     .frm {
-        background-color: white;
-        border-radius: 30px;
-        max-width: 400px; /* Adjust the maximum width as needed */
-        width: 80%;
-        margin: auto;
+      background-color: white;
+      border-radius: 30px;
+      max-width: 400px; /* Adjust the maximum width as needed */
+      width: 100%;
+      margin: auto;
+      
     }
 
-
-    .shap .logo {
-        color: Green;
-        text-align: center;
-        font-family: helvetica;
-        font-weight: 750;
-        font-size: 40px;
+    .logo {
+      color: Green;
+      text-align: center;
+      font-family: helvetica;
+      font-weight: 750;
+      font-size: 40px;
     }
-    
+
+    .main{
+      width: 80%;
+      margin: auto;
+      font-family: helvetica;
+      background-color: rgb(0,0,0,0.6);
+      border-radius: 30px;
+      margin-top: 100px;
+      
+    }
       
 
     .visibledevice {
-        display:block;
+      display:block;
     }
     
 }
 
 @media (min-width : 431px){ /* Pc, Tablet */
+
     .frm {
-        background-color: white;
-        border-radius: 30px;
-        margin-left: 10vw;
-        margin-right: 25px;
-        max-width: 400px; /* Adjust the maximum width as needed */
-        width: 80%;
+      background-color: white;
+      border-radius: 30px;
+      max-width: 400px; /* Adjust the maximum width as needed */
+      width: 300px;
     }
+    
+    .logo {
+      color: Green;
+      font-family: helvetica;
+      font-weight: 750;
+      font-size: 40px;
+      margin-left: 40px;
       
-    .shap .logo {
-        color: Green;
-        margin-left: 23vw;
-        font-family: helvetica;
-        font-weight: 750;
-        font-size: 40px;
+    }
+
+    .main{
+      margin-left: 10vw;
+      font-family: helvetica;
+      background-color: rgb(0,0,0,0.6);
+      width: 300px;
+      border-radius: 30px;
+      margin-top: 100px;
     }
 
     .visibledesktop {

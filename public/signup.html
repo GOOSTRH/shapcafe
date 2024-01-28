@@ -3,18 +3,24 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="signup.css">
-    <title>SHAPCafe</title>
+    <title>SHAPCafeOnline</title>
+
+    
+    <link rel="shortcut icon" href="#" />
+    <script> // |--- this line of code is for favion.ico error prevention, do not delete</script>
 
 </head>
-<body>
+<body class="">
+  <div class="main">
+
     <section class="header">
-        <nav class="shap">
-          <div class="logo">SHAP<Logocafe>Cafè</Logocafe></div>         
+      <div class="logo">SHAP<Logocafe>Cafè</Logocafe></div>         
     </section>
+
     <section class="frm">
       <form id="signupform">
         <div class="container">
-          <h2 class="signin">Sign debugging 1 In</h2>
+          <h2 class="signin">uWWu</h2>
     
           <label for="email">
             <input class="email" type="email" id="email" placeholder="SHAP Mail" name="email" required>
@@ -23,32 +29,54 @@
           <label for="password">
             <input class="pswd" type="password" id="password" placeholder="Password" name="password" required>
           </label>
-    
-          <a href="#" class='signup' style="color: black; text-decoration: none; display: block;">Sign Up here.</a>
+          <div class="SignUpMessageDiv">
+            <a class="signupmessage" >Sign Up here</a>
+            <a class="signupmessage" style="display: block;"> Process might take up to a few seconds</a>
+          </div>
           
-          <button class="RegisterBtn" onclick="signup()">Sign Up</button>
+          
+          <button class="RegisterBtn" id="RegisterBtn">Sign Up</button>
     
           <a href="#" class='tos' style="color: rgb(65, 65, 255)">Terms & Privacy</a>
 
         </div>
       </form>
     </section>
-     
-    <script type="module">/* script below is for firebase, DO NOT TOUCH */
-      // Import the functions you need from the SDKs you need
-      // Import the functions you need from the SDKs you need
 
-      // TODO: Add SDKs for Firebase products that you want to use
-      // https://firebase.google.com/docs/web/setup#available-libraries
+  </div>
+    <script type="module">/* script below is for firebase, DO NOT TOUCH */
+
+      import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js'
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-analytics.js";
+      import { getDatabase } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
+      import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyD9MsZE2sTpVoBosSDcbyXPDdN79IlVUUM",
+        authDomain: "shapcafe-eb9f5.firebaseapp.com",
+        databaseURL: "https://shapcafe-eb9f5-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "shapcafe-eb9f5",
+        storageBucket: "shapcafe-eb9f5.appspot.com",
+        messagingSenderId: "59729342111",
+        appId: "1:59729342111:web:8664c7357840a23ae3bcaa",
+        measurementId: "G-CR7GGCCC30"
+      };
+
+      const app = initializeApp(firebaseConfig);
+
+      const auth = getAuth();
+      const database = getDatabase();
+
+      
 
     </script>
+    <script type="module" src = "signup.js"></script>
 
 </body>
-<script src="signup.js"></script>
 </html>
 
 
 
-<div class="visibledesktop">Desktop and Tablet Webpage</div>
+<div class="visibledesktop"></div>
 
-<div class="visibledevice">Mobile Webpage</div>
+<div class="visibledevice"></div>

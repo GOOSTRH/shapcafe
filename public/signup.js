@@ -1,5 +1,7 @@
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js';
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
+
 const firebaseConfig = {
     apiKey: "AIzaSyD9MsZE2sTpVoBosSDcbyXPDdN79IlVUUM",
     authDomain: "shapcafe-eb9f5.firebaseapp.com",
@@ -10,74 +12,79 @@ const firebaseConfig = {
     appId: "1:59729342111:web:8664c7357840a23ae3bcaa",
     measurementId: "G-CR7GGCCC30"
 };
-import { GetAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { database } from "firebase/database";
 
-// Initialize Firebase
+// Initializing firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-// Initialize variables
-const auth = GetAuth();
-const database = firebase.database();
+const auth = getAuth(app);
+const database = getDatabase(app);
+
+
+const SignUpBtn = document.getElementById('RegisterBtn');
+
+// Add event listener to the button
+
+SignUpBtn.addEventListener('click', function(event) {
+    // Prevent default form submission behavior
+    event.preventDefault();
+    // Call your signup function
+    signup();
+});
+
 
 // Set up our register function, sign up function
 function signup(){
+    
     // Getting all our input fields
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
 
     // Validate input fields
     if (!validate_email(email)){
-        alert('Please enter a valid email address');
+        alert('Please enter your shap email address correctly');
         return;
     } else if (!validate_password(password)){
-        alert('Please enter a valid password (password must be at least 69 characters)');
+        alert('Please enter a valid password (password must be at least 6 characters)');
         return;
     }
+    
 
     // Moving on to Auth
-    alert('debugging 1');
     createUserWithEmailAndPassword(auth, email, password)
-    .then(function(){
-        alert('debugging 2');
-        // Declare user variable
-        const user = userCredential.user;
+        .then((userCredential) => {
+            // The user is signed up successfully
+            const user = userCredential.user;
+            const user_data = {
+                email: email,
+                last_login: Date.now()
+            };
 
-        alert('debugging 3');
-        // Add user to Firebase Database
-        var database_ref = database.ref('users/' + user.uid);
-        
-        // Create User Data
-        var user_data = {
-            email: email,
-            last_login: Date.now()
-        };
-        
-        // Use set() method to save data to the database
-        database_ref.set(user_data)
-        .then(function() {
-            alert('User Created!');
+            // Save user data to the database
+            set(ref(database, 'users/' + user.uid), user_data)
+                .then(() => {
+                    console.log('User data saved successfully');
+                    alert('User Created!');
+                })
+                .catch(error => {
+                    console.error('Error saving user data:', error);
+                    alert('Error creating user. Please try again later.');
+                });
         })
-        .catch(function(error) {
-            console.error('Error saving user data:', error);
-            alert('Error creating user. Please try again later.');
+        .catch((error) => {
+                console.error('Error creating user:', error);
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                if (errorCode === 'auth/weak-password') {
+                    alert('The password is too weak.');
+                } else {
+                    alert(errorMessage);
+                }
         });
-        
-
-    })
-    .catch(function(error){
-        alert('debugging error');
-        console.error('Error creating user:', error);
-        alert(error.message);
-    });
-    alert('debugging 5');
 }
 
 
 function validate_email(email){
-    expression = /^[^@]+@\w+(\.\w+)+\w$/
+
+    let expression = /^[^@]+@\w+(\.\w+)+\w$/;
     if(expression.test(email) == false ) return false;
     if(email.substr(email.length - 12) != "@shap.edu.ph" ) return false;
     if(email == "ShapCafeAdmin2024@proton.me") return true;
