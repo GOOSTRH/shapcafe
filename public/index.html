@@ -5,6 +5,9 @@
     <link rel="stylesheet" type="text/css" href="index.css">
     <title>SHAPCafe</title>
 
+    <link rel="shortcut icon" href="#" />
+    <script> // |--- this line of code is for favion.ico error prevention, do not delete</script>
+
 </head>
 <body>
   <div class="main">
@@ -19,11 +22,11 @@
           <h2 class="login">Log In</h2>
     
           <label for="email">
-            <input class="email" type="text" placeholder="SHAP Mail" name="email" required>
+            <input class="email" type="email" id="email" placeholder="SHAP Mail" name="email" required>
           </label>
     
           <label for="password">
-            <input class="pswd" type="password" placeholder="Password" name="password" required>
+            <input class="pswd" type="password" id="password" placeholder="Password" name="password" required>
           </label>
     
           <div class="SignupMessageDiv">
@@ -31,7 +34,7 @@
             <a href="/signup.html" class='SignupMessage2' style="display: block;">Sign up here</a>
           </div>
           
-          <button class="LoginBtn" onclick="authenticateUser()">Log In</button>
+          <button class="LoginBtn" id="LoginBtn">Log In</button>
     
           <a href="#" class="TermsAndServices">Terms & Privacy</a>
 
@@ -40,19 +43,13 @@
       </form>
     </section>
   </div>
-    
     <script type="module">/* script below is for firebase, DO NOT TOUCH */
-      // Import the functions you need from the SDKs you need
-      // Import the functions you need from the SDKs you need
+
       import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js'
       import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-analytics.js";
       import { getDatabase } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
       import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
-      // TODO: Add SDKs for Firebase products that you want to use
-      // https://firebase.google.com/docs/web/setup#available-libraries
 
-      // Your web app's Firebase configuration
-      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
       const firebaseConfig = {
         apiKey: "AIzaSyD9MsZE2sTpVoBosSDcbyXPDdN79IlVUUM",
         authDomain: "shapcafe-eb9f5.firebaseapp.com",
@@ -63,15 +60,19 @@
         appId: "1:59729342111:web:8664c7357840a23ae3bcaa",
         measurementId: "G-CR7GGCCC30"
       };
-    
-      // Initialize Firebase
+
       const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
+
+      const auth = getAuth();
+      const database = getDatabase();
+
+      
+
     </script>
+    <script type="module" src = "index.js"></script>
 
 
 
 
 </body>
-<script src="index.js"></script>
 </html>
