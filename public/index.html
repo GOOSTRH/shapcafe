@@ -7,6 +7,8 @@
 
 </head>
 <body>
+  <div class="main">
+
     <section class="header">
         <nav class="shap">
           <div class="logo">SHAP<LogoCafe>Cafè</LogoCafe></div>         
@@ -17,26 +19,27 @@
           <h2 class="login">Log In</h2>
     
           <label for="email">
-            <input class="emaild" type="text" placeholder="SHAP Mail" name="email" required>
+            <input class="email" type="text" placeholder="SHAP Mail" name="email" required>
           </label>
     
           <label for="password">
             <input class="pswd" type="password" placeholder="Password" name="password" required>
           </label>
     
-          <a class='Message1'>Don't have an account?</a>
+          <div class="SignupMessageDiv">
+            <a class="SignupMessage1" >Don't have an account?</a>
+            <a href="/signup.html" class='SignupMessage2' style="display: block;">Sign up here</a>
+          </div>
           
-          <a href="/signup.html" class='GoToSignUpPageBtn' style="display: block;">Sign up here</a>
-        
-          <button class="loginbtn" onclick="authenticateUser()">Log In</button>
+          <button class="LoginBtn" onclick="authenticateUser()">Log In</button>
     
-          <a href="#" class='TermsAndServices' style="color: rgb(65, 65, 255)">Terms & Privacy</a>
+          <a href="#" class="TermsAndServices">Terms & Privacy</a>
 
 
         </div>
       </form>
     </section>
-
+  </div>
     
     <script type="module">/* script below is for firebase, DO NOT TOUCH */
       // Import the functions you need from the SDKs you need

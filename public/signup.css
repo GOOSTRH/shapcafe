@@ -26,19 +26,15 @@ LogoCafe { /* 'cafe' part of the header*/
 }
 
 
-.TermsAndServices,.Message1 { /* 'sign up here' 'Terms' */
+.TermsAndServices { /* 'Terms' */
   font-weight: 600;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 
 
 .GoToSignUpPageBtn{
   margin-bottom: 20px;
-}
-
-
-.TermsAndServices { /* 'Terms' */
-  margin-top: 10px;
-  margin-bottom: 30px;
 }
 
 .login { /* 'sign in' */
@@ -94,11 +90,15 @@ LogoCafe { /* 'cafe' part of the header*/
   text-align: center;
 }
 
-.signupmessage{
+.SignupMessage1{
   color: #acacac;
   font-size: small;
 }
 
+.SignupMessage2{
+  color: #777777;
+  font-size: small;
+}
 
 @media only screen and (min-width: 400px) {
   body {
