@@ -1,6 +1,6 @@
 body {
   background-color: rgb(240, 240, 240);
-  background-image: url("background_2.png"), url("background_1.png");
+  background-image: url("../background_2.png"), url("../background_1.png");
   background-position: bottom  right, top left;
   background-repeat: no-repeat, no-repeat;
   background-attachment: fixed,fixed;
