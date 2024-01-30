@@ -61,7 +61,6 @@ function signin(){
             update(ref(database, 'users/' + user.uid), user_data)
                 .then(() => {
                     console.log('User data saved successfully');
-                    alert('User Logged in!');
                     GoHome();
                 })
                 .catch(error => {

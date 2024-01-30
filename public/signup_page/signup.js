@@ -62,7 +62,6 @@ function signup(){
             set(ref(database, 'users/' + user.uid), user_data)
                 .then(() => {
                     console.log('User data saved successfully');
-                    alert('User Created!');
                     GoHome();
                 })
                 .catch(error => {
