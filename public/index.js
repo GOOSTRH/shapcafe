@@ -46,20 +46,6 @@ function signin(){
         alert('Please enter a valid password (password must be at least 6 characters)');
         return;
     }
-    
-    /*
-    firebase.auth().signInWithEmailAndPassword(email, password)
-  .then((userCredential) => {
-    // Signed in
-    var user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-  });
-
-    */
 
 
     // Moving on to Auth
@@ -76,6 +62,7 @@ function signin(){
                 .then(() => {
                     console.log('User data saved successfully');
                     alert('User Logged in!');
+                    GoHome();
                 })
                 .catch(error => {
                     console.error('Error saving user data:', error);
@@ -84,6 +71,11 @@ function signin(){
         })
         .catch((error) => {
                 console.error('Error Sign in user:', error);
+                if (errorCode === 'auth/invalid-credential') {
+                    alert('Invalid Email, Please sign up before Logging in');
+                } else {
+                    alert(errorMessage);
+                }
                 const errorCode = error.code;
                 const errorMessage = error.message;
         });
@@ -105,3 +97,34 @@ function validate_password(password){
     return true;
 }
 
+
+
+const PswdToggleBtn = document.getElementById('ToggleBtn');
+
+// Add event listener to the button
+
+PswdToggleBtn.addEventListener('click', function(event) {
+    // Prevent default form submission behavior
+    event.preventDefault();
+    // Call your signup function
+    togglePasswordVisibility();
+});
+
+
+function togglePasswordVisibility() {
+    var PswdField = document.getElementById("password");
+    var ToggleBtnImg = document.getElementById("ToggleIcon");
+  
+    if (PswdField.type === "password") {
+        PswdField.type = "text";
+        ToggleBtnImg.src = "shown.png";
+    } else {
+        PswdField.type = "password";
+        ToggleBtnImg.src = "hidden.png";
+    }
+}
+
+
+function GoHome(){
+    window.location.href = "/home_page/home.html";
+}

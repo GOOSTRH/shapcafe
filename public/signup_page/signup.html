@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="signup.css">
-    <title>SHAPCafeOnline</title>
+    <title>Sign up / SHAPCafeOnline</title>
 
     
     <link rel="shortcut icon" href="#" />
@@ -22,13 +22,16 @@
         <div class="container">
           <h2 class="signin">Sign up</h2>
     
-          <label for="email">
-            <input class="email" type="email" id="email" placeholder="SHAP Mail" name="email" required>
-          </label>
-    
-          <label for="password">
+          <input class="email" type="email" id="email" placeholder="SHAP Mail" name="email" required>
+          
+
+          <div class="password-container">
             <input class="pswd" type="password" id="password" placeholder="Password" name="password" required>
-          </label>
+            <button class="ToggleBtn" type="button" id="ToggleBtn" >
+              <img class="ToggleIcon" src="../hidden.png" alt="Toggle Password">
+            </button>
+          </div>
+          
 
           <div class="SignUpMessageDiv">
             <a class="SignupMessage1" style="display: block;">Process might take up to a few seconds</a>

@@ -63,25 +63,31 @@ LogoCafe { /* 'cafe' part of the header*/
   text-align: center;
   border-width: 0;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-
-
-.RegisterBtn {
-  border-radius: 20px;
-  padding: 10px;
-  text-align: center;
-  border-width: 0;
-  background-color: orange;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  cursor: pointer;
-  width: 80%;
-}
-
-.email,
-.pswd,.RegisterBtn{
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+
+.password-container {
+  position: relative;
+  display: inline-block;
+}
+
+.ToggleBtn {
+  position: absolute;
+  top: 50%;
+  right: 10px; /* Adjust distance from the password input */
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0; /* Remove padding to ensure the image fits properly */
+}
+
+
+.ToggleBtn, .ToggleIcon {
+  width: 20px; /* Adjust image size as needed */
+  height: auto; /* Maintain aspect ratio */
 }
 
 .SignUpMessageDiv{
@@ -98,6 +104,21 @@ LogoCafe { /* 'cafe' part of the header*/
 .SignupMessage2{
   font-size: small;
 }
+
+
+.RegisterBtn {
+  border-radius: 20px;
+  padding: 10px;
+  text-align: center;
+  border-width: 0;
+  background-color: orange;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  cursor: pointer;
+  width: 80%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 
 @media only screen and (min-width: 400px) {
   body {

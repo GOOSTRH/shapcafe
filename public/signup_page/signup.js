@@ -63,6 +63,7 @@ function signup(){
                 .then(() => {
                     console.log('User data saved successfully');
                     alert('User Created!');
+                    GoHome();
                 })
                 .catch(error => {
                     console.error('Error saving user data:', error);
@@ -70,14 +71,14 @@ function signup(){
                 });
         })
         .catch((error) => {
-                console.error('Error creating user:', error);
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                if (errorCode === 'auth/weak-password') {
-                    alert('The password is too weak.');
-                } else {
-                    alert(errorMessage);
-                }
+            console.error('Error creating user:', error);
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            if (errorCode === 'auth/weak-password') {
+                alert('The password is too weak.');
+            } else {
+                alert(errorMessage);
+            }
         });
 }
 
@@ -97,3 +98,33 @@ function validate_password(password){
     return true;
 }
 
+
+const PswdToggleBtn = document.getElementById('ToggleBtn');
+
+// Add event listener to the button
+
+PswdToggleBtn.addEventListener('click', function(event) {
+    // Prevent default form submission behavior
+    event.preventDefault();
+    // Call your signup function
+    togglePasswordVisibility();
+});
+
+
+function togglePasswordVisibility() {
+    var PswdField = document.getElementById("password");
+    var ToggleBtnImg = document.getElementById("ToggleIcon");
+  
+    if (PswdField.type === "password") {
+        PswdField.type = "text";
+        ToggleBtnImg.src = "../shown.png";
+    } else {
+        PswdField.type = "password";
+        ToggleBtnImg.src = "../hidden.png";
+    }
+}
+
+
+function GoHome(){
+    window.location.href = "../home_page/home.html";
+}

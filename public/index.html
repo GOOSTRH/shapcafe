@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="index.css">
-    <title>SHAPCafe</title>
+    <title>Log in / SHAPCafeOnline</title>
 
     <link rel="shortcut icon" href="#" />
     <script> // |--- this line of code is for favion.ico error prevention, do not delete</script>
@@ -21,13 +21,15 @@
         <div class="container">
           <h2 class="login">Log In</h2>
     
-          <label for="email">
-            <input class="email" type="email" id="email" placeholder="SHAP Mail" name="email" required>
-          </label>
-    
-          <label for="password">
+          <input class="email" type="email" id="email" placeholder="SHAP Mail" name="email" required>
+          
+          <div class="password-container">
             <input class="pswd" type="password" id="password" placeholder="Password" name="password" required>
-          </label>
+            <button class="ToggleBtn" type="button" id="ToggleBtn" >
+              <img class="ToggleIcon" src="hidden.png" alt="Toggle Password">
+            </button>
+          </div>
+          
     
           <div class="SignupMessageDiv">
             <a class="SignupMessage1" >Don't have an account?</a>

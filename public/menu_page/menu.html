@@ -3,11 +3,11 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="menu.css">
-    <title>Menu</title>
+    <title>Menu / SHAPCafeOnline</title>
 </head>
 <body>
     <section class="header">
-        <a class='back btn' href="#">&#8249;</a>
+        <a class='back btn' href="../home_page/home.html">&#8249;</a>
         <div class="logo">Order list</div>         
     </section>
     <section class="nav">
@@ -21,32 +21,61 @@
             <hr>
             <h1>food 1</h1>
             <p class="desc">food 1 made with 1, 2 ,3 ,4 ,5</p>
-            <p2 class="price">$12.34</p2>
+            <p2 class="price">75</p2>
             <br>
-            <a href="">Add to cart</a>
+            <button onclick="addToCart('food 1', 75)">Add to Cart</button>
             <hr>
 
             <h1>food 2</h1>
             <p class="desc">food 2 made with 1, 2 ,3 ,4 ,5</p>
-            <p2 class="price">$12.34</p2>
+            <p2 class="price">40</p2>
             <br>
-            <a href="">Add to cart</a>
+            <button onclick="addToCart('food 2', 40)">Add to Cart</button>
             <hr>
 
             <h1>food 3</h1>
             <p class="desc">food 3 made with 1, 2 ,3 ,4 ,5</p>
-            <p2 class="price">$12.34</p2>
+            <p2 class="price">80</p2>
             <br>
-            <a href="">Add to cart</a>
+            <button onclick="addToCart('food 3', 80)">Add to Cart</button>
             <hr>
 
             <h1>food 4</h1>
             <p class="desc">food 4 made with 1, 2 ,3 ,4 ,5</p>
-            <p2 class="price">$12.34</p2>
+            <p2 class="price">90</p2>
             <br>
-            <a href="">Add to cart</a>
+            <button onclick="addToCart('food 4', 90)">Add to Cart</button>
             <hr>
         </div>
     </section>
+
+<script>
+    function addToCart(name, price) {
+        let cart = getCookie('cart') ? JSON.parse(getCookie('cart')) : [];
+        let existingItemIndex = cart.findIndex(item => item.name === name);
+        if (existingItemIndex !== -1) {
+            cart[existingItemIndex].quantity++;
+        } else {
+            cart.push({ name, price, quantity: 1 });
+        }
+        document.cookie = `cart=${JSON.stringify(cart)}; expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()}; path=/`;
+        alert('Product added to cart!');
+    }
+
+    function getCookie(name) {
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const cookies = decodedCookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            let cookie = cookies[i];
+            while (cookie.charAt(0) === ' ') {
+                cookie = cookie.substring(1);
+            }
+            if (cookie.indexOf(name) === 0) {
+                return cookie.substring(name.length + 1, cookie.length);
+            }
+        }
+        return "";
+    }
+</script>
 </body>
 </html>
