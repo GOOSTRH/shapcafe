@@ -1,6 +1,6 @@
 body {
   background-color: rgb(240, 240, 240);
-  background-image: url("../background_2.png"), url("../background_1.png");
+  background-image: url("background_2.png"), url("background_1.png");
   background-position: bottom  right, top left;
   background-repeat: no-repeat, no-repeat;
   background-attachment: fixed,fixed;
@@ -31,12 +31,6 @@ LogoCafe { /* 'cafe' part of the header*/
   margin-top: 10px;
   margin-bottom: 30px;
 }
-
-
-.GoToSignUpPageBtn{
-  margin-bottom: 20px;
-}
-
 
 
 .login { /* 'sign in' */
@@ -115,73 +109,6 @@ LogoCafe { /* 'cafe' part of the header*/
 .visibledesktop {display:none;}
 
 @media (max-width : 431px) { /* mobile */
-    
-    .frm {
-      background-color: white;
-      border-radius: 30px;
-      max-width: 400px; /* Adjust the maximum width as needed */
-      width: 100%;
-      margin: auto;
-      font-family: helvetica;
-    }
-
-    .logo {
-      color: Green;
-      text-align: center;
-      font-family: helvetica;
-      font-weight: 750;
-      font-size: 40px;
-    }
-
-    .main{
-      width: 80%;
-      margin: auto;
-      font-family: helvetica;
-      background-color: rgb(0,0,0,0.6);
-      border-radius: 30px;
-      margin-top: 100px;
-      
-    }
-      
-
-    .visibledevice {
-      display:block;
-    }
-    
-}
-
-@media (min-width : 431px){ /* Pc, Tablet */
-
-    .frm {
-      background-color: white;
-      border-radius: 30px;
-      max-width: 400px; /* Adjust the maximum width as needed */
-      width: 300px;
-      font-family: helvetica;
-    }
-    
-    .logo {
-      color: Green;
-      font-family: helvetica;
-      font-weight: 750;
-      font-size: 40px;
-      margin-left: 40px;
-      
-    }
-
-    .main{
-      margin-left: 10vw;
-      font-family: helvetica;
-      background-color: rgb(0,0,0,0.6);
-      width: 300px;
-      border-radius: 30px;
-      margin-top: 100px;
-    }
-
-    .visibledesktop {
-        display:block;
-    }  
-}@media (max-width : 431px) { /* mobile */
     
   .frm {
     background-color: white;
