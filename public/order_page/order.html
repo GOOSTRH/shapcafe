@@ -30,76 +30,81 @@
             </table>
         </div>
     </section>
-<script>
-    // Render cart items
-    function renderCart() {
-        const cartItemsContainer = document.getElementById('cart-items');
-        cartItemsContainer.innerHTML = '';
 
-        let cart = getCookie('cart') ? JSON.parse(getCookie('cart')) : [];
-        let totalPrice = 0;
 
-        cart.forEach((item, index) => {
-            const total = item.price * item.quantity;
-            totalPrice += total;
 
-            const row = `
+
+
+    <script>
+        // Render cart items
+        function renderCart() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            cartItemsContainer.innerHTML = '';
+
+            let cart = getCookie('cart') ? JSON.parse(getCookie('cart')) : [];
+            let totalPrice = 0;
+
+            cart.forEach((item, index) => {
+                const total = item.price * item.quantity;
+                totalPrice += total;
+
+                const row = `
+                    <tr>
+                        <td><p class="name">${item.name}</p></td>
+                        <td><input class="quan" type="number" value="${item.quantity}" min="1" onchange="updateQuantity(${index}, this.value)"></td>
+                        <td><p class="ttl">₱${total}</p></td>
+                        <td><a class="rmv" onclick="removeFromCart(${index})">X</a></td>
+                    </tr>
+                `;
+                cartItemsContainer.innerHTML += row;
+            });
+
+            // Display total price
+            const totalRow = `
                 <tr>
-                    <td><p class="name">${item.name}</p></td>
-                    <td><input class="quan" type="number" value="${item.quantity}" min="1" onchange="updateQuantity(${index}, this.value)"></td>
-                    <td><p class="ttl">₱${total}</p></td>
-                    <td><a class="rmv" onclick="removeFromCart(${index})">X</a></td>
+                    <td colspan="3">Total:</td>
+                    <td>₱${totalPrice}</td>
+                    <td></td>
                 </tr>
             `;
-            cartItemsContainer.innerHTML += row;
-        });
-
-        // Display total price
-        const totalRow = `
-            <tr>
-                <td colspan="3">Total:</td>
-                <td>₱${totalPrice}</td>
-                <td></td>
-            </tr>
-        `;
-        cartItemsContainer.innerHTML += totalRow;
-    }
-
-    // Function to get a cookie
-    function getCookie(name) {
-        const decodedCookie = decodeURIComponent(document.cookie);
-        const cookies = decodedCookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            let cookie = cookies[i];
-            while (cookie.charAt(0) === ' ') {
-                cookie = cookie.substring(1);
-            }
-            if (cookie.indexOf(name) === 0) {
-                return cookie.substring(name.length + 1, cookie.length);
-            }
+            cartItemsContainer.innerHTML += totalRow;
         }
-        return "";
-    }
 
-    // Remove item from cart
-    function removeFromCart(index) {
-        let cart = getCookie('cart') ? JSON.parse(getCookie('cart')) : [];
-        cart.splice(index, 1);
-        document.cookie = `cart=${JSON.stringify(cart)}; expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()}; path=/`;
+        // Function to get a cookie
+        function getCookie(name) {
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const cookies = decodedCookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i];
+                while (cookie.charAt(0) === ' ') {
+                    cookie = cookie.substring(1);
+                }
+                if (cookie.indexOf(name) === 0) {
+                    return cookie.substring(name.length + 1, cookie.length);
+                }
+            }
+            return "";
+        }
+
+        // Remove item from cart
+        function removeFromCart(index) {
+            let cart = getCookie('cart') ? JSON.parse(getCookie('cart')) : [];
+            cart.splice(index, 1);
+            document.cookie = `cart=${JSON.stringify(cart)}; expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()}; path=/`;
+            renderCart();
+        }
+
+        // Update quantity of an item in the cart
+        function updateQuantity(index, newQuantity) {
+            let cart = getCookie('cart') ? JSON.parse(getCookie('cart')) : [];
+            cart[index].quantity = parseInt(newQuantity);
+            document.cookie = `cart=${JSON.stringify(cart)}; expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()}; path=/`;
+            renderCart();
+        }
+
+        // Render the initial cart items when the page loads
         renderCart();
-    }
-
-    // Update quantity of an item in the cart
-    function updateQuantity(index, newQuantity) {
-        let cart = getCookie('cart') ? JSON.parse(getCookie('cart')) : [];
-        cart[index].quantity = parseInt(newQuantity);
-        document.cookie = `cart=${JSON.stringify(cart)}; expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()}; path=/`;
-        renderCart();
-    }
-
-    // Render the initial cart items when the page loads
-    renderCart();
-</script>
+    </script>
 
 </body>
 </html>

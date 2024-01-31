@@ -4,17 +4,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="home.css">
     <title>Home / SHAPCafeOnline</title>
+
+    <link rel="shortcut icon" href="#" />
+    <script> // |--- this line of code is for favion.ico error prevention, do not delete</script>
+
 </head>
-<body>
-    <section class="header">
-        <div class="logo">Home</div>         
+
+<div class="TopDiv">
+    <section class="LogoNav">
+        <a class="LogoBtn" type="button" id="LogoBtn" href="../home_page/home.html">
+            <img class="Logo" src="../Logo.png" alt="Go to Homepage">
+        </a>
     </section>
     <section class="nav">
-        <a class='sdish btn' href="../menu_page/menu.html">Menu</a>
-        <a class='oth btn' href="#">About</a>
-        <a class='oth btn' href="../order_page/order.html">Shopping Cart</a>
-        <a class='oth btn' href="#">Account</a>
-    </section>
+        <a class='menu btn' href="../menu_page/menu.html">Menu</a>
+        <a class='about btn' href="#">About</a>
+        <a class='account btn' href="#">Account</a>
+    </section>    
+</div>
+    
+<body class="body">
     <section class="main">
         <h1>Shap Cafe Online</h1>
         <p>
@@ -27,7 +36,7 @@
 
             <br>
         </p>
-        <a class="gs btn" href="#">Go to Menu</a>
+        <a class="GoToMenuBtn" href="../menu_page/menu.html">Go to Menu</a>
     </section>
 </body>
 </html>

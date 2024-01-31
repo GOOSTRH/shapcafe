@@ -6,6 +6,7 @@ body {
   background-attachment: fixed,fixed;
   background-position-x: 0,0;
   background-position-y: 0,0;
+  background-size: cover;
 }
 
 .header {
@@ -133,13 +134,7 @@ LogoCafe { /* 'cafe' part of the header*/
   align-items: center;
   height: 100vh;
   background-color: #f0f0f0; /* Background color for the loading screen */
-}
-
-.loading-screen.visible {
-  display: block; /* Show the loading screen when the 'visible' class is added */
-}
-
-.loading-screen {
+  
   position: fixed;
   top: 0;
   left: -100%; /* Initially hidden off the left side of the screen */
@@ -151,6 +146,7 @@ LogoCafe { /* 'cafe' part of the header*/
 }
 
 .loading-screen.visible {
+  display: block; /* Show the loading screen when the 'visible' class is added */
   left: 0; /* Slide in from left to right */
 }
 
@@ -202,15 +198,9 @@ LogoCafe { /* 'cafe' part of the header*/
   }
 }
 
-@media only screen and (min-width: 400px) {
-  body {  
-    background-size: cover;
-  }
-}
 
 
-.visibledevice {display:none;}
-.visibledesktop {display:none;}
+
 
 @media (max-width : 431px) { /* mobile */
   .s, .h, .a1, .p, .space, .c, .a2, .f, .e {
@@ -229,16 +219,6 @@ LogoCafe { /* 'cafe' part of the header*/
 
 
 
-@media only screen and (min-width: 400px) {
-  body {
-
-    background-size: cover;
-  }
-}
-
-
-.visibledevice {display:none;}
-.visibledesktop {display:none;}
 
 @media (max-width : 431px) { /* mobile */
     

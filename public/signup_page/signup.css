@@ -6,6 +6,7 @@ body {
   background-attachment: fixed,fixed;
   background-position-x: 0,0;
   background-position-y: 0,0;
+  background-size: cover;
 }
 
 .header {
@@ -200,16 +201,7 @@ LogoCafe { /* 'cafe' part of the header*/
   }
 }
 
-@media only screen and (min-width: 400px) {
-  body {
 
-    background-size: cover;
-  }
-}
-
-
-.visibledevice {display:none;}
-.visibledesktop {display:none;}
 
 @media (max-width : 431px) { /* mobile */
     

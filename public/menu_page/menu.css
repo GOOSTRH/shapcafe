@@ -1,32 +1,71 @@
 body {
-    background-color: #faf0e6;
+    background-color: rgb(240, 240, 240);
+    background-image: url("../background_2.png"), url("../background_1.png");
+    background-position: bottom  right, top left;
+    background-repeat: no-repeat, no-repeat;
+    background-attachment: fixed,fixed;
+    background-position-x: 0,0;
+    background-position-y: 0,0;
+    background-size: cover;
+    
+    margin-left: 3vw;
+    margin-right: 3vw;
+    margin-bottom: 20px;
 }
 
-.back {
-    text-decoration: none;
-    font-size: 20px;
-    background-color: white;
-    border-radius: 50%;
-    color: black;
-    margin-left: 15px;
-    margin-top: 15px;
-    padding: 8px 16px;
-    display: inline-block;
+.dish,.ordercontainer{
+    position: relative; /* Position relative for the vertical line */
 }
 
-
-
-.dishb, .sdish, .oth{
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: 450;
-    background-color: white;
-    color: black;
-    padding: 10px;
-    display: inline-block;
+.background{
     text-align: center;
-    margin-top: 20px;
-    margin-left: 10px;
+    transition: opacity 0.5s; /* Fade transition */
+
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0, 0.6); /* Semi-transparent background */
+    z-index: -1; /* Ensure it's on top of other elements */
+    transition: left 0.5s; /* Slide transition */
+}
+
+.TopDiv {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 1);
+    z-index: 1000;
+}
+
+.nav{
+    text-align: center;
+}
+
+
+.btn {
+    display: inline-block; /* Make the buttons inline with the logo */
+    margin: 0 10px; /* Add some spacing between the buttons */
+    text-decoration: none;
+    padding: 10px 20px;
+    padding-bottom: 10px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    font-weight: bold;
+    position: relative; /* Position relative for the vertical line */
+    color: #000; /* Set text color */
+    background-color: transparent;
+    font-family: Helvetica;
+    transition: all 0.2s ease;
+    margin-bottom: 10px;
 }
 
 .btn:hover {
@@ -34,11 +73,37 @@ body {
     background-color: rgba(79, 78, 78, 0.558);
 }
 
-.btn{
-    border-radius: 40%;
+.btn:not(.maindish):before {
+    content: ""; /* Add content to create the vertical line */
+    position: absolute; /* Position the line absolutely */
+    top: 0;
+    bottom: 0;
+    left: -10px; /* Adjust the position to overlap with the previous button */
+    width: 1px; /* Set width of the vertical line */
+    background-color: black; /* Set color of the vertical line */
 }
 
-.logo {
+
+.LogoBtn {
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0; /* Remove padding to ensure the image fits properly */
+    right: 10px;
+}
+
+
+.LogoBtn, .Logo {
+    width: 200px; /* Adjust image size as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+
+
+.header1{
     font-family: helvetica;
     font-weight: 750;
     font-size: 35px;
@@ -46,59 +111,192 @@ body {
     margin-left: 20px;
 }
 
-.main {
+.header2,.orderheader{
+    font-family: helvetica;
+    font-weight: 750;
+    font-size: 35px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.main,.ordermain {
     background-color: white;
     border-radius: 50px;
     padding: 20px;
     margin-top: 30px;
-}
-
-.main, .logo {
+    font-family: helvetica;
     font-size: 40px;
 }
 
-.dish, h1 {
+h1 {
     font-family: helvetica;
     font-weight: 750;
     font-size: 25px;
     margin-top: 20px;
 }
 
-.dish, p {
-    font-family: helvetica;
-    font-size: 15px;   
+hr{
+    height: 4px;
+    background-color: rgb(0,0,0,0.8);
+    border: transparent;
 }
 
-.dish, .price {
+.AddToCart{
+    text-align: center;
+    display: inline-block; /* Make the buttons inline with the logo */
+    text-decoration: none;
+    padding: 15px 20px;
+    padding-bottom: 15px;
+    border: 2px solid;
+    border-radius: 5px;
+    font-weight: bold;
+    position: relative; /* Position relative for the vertical line */
+    color: #000; /* Set text color */
+    background-color: transparent;
+    font-family: Helvetica;
+    transition: all 0.2s ease;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.AddToCart:hover {
+    transition-delay: 180ms;
+    background-color: rgba(255, 179, 0, 0.886);
+}
+
+p {
+    font-family: helvetica;
+    font-size: 15px;  
+    
+}
+
+.price {
     font-family: helvetica;
     font-size: 20px; 
-    margin-left: 40%;
     font-weight: 750;
+    text-align: left;
 }
 
-.dish, a {
+.dish,.ordercontainer {
     text-decoration: none;
     font-family: helvetica;
-    font-size: 11px; 
-    margin-left: 41%;
     font-weight: 500;
     color: black;
-    background-color: blanchedalmond;
+    background-color: white;
     padding: 5px;
     border-radius: 10px;
+    text-align: left;
 }
 
-.visibledevice {
-    display:block;
+
+
+.container-cart-table {
+    font-size: 12px;
 }
 
-@media (max-width : 431px) { /* mobile */
+.quan {
+    text-align: center;
+    width: 30px;
+    margin-left: 45%;
+}
 
+th {
+    font-weight: 700;
+    font-family: helvetica;
+    font-size: 25px;
+    padding-left: 10px;
+}
+
+tr{
+    margin-left: 10px;
+    font-size: 30px;
+}
+
+.name {
+    text-align: center;
+    margin-left: 25%;
+}
+
+.ttl {
+    margin-left: 45%;
+}
+
+.rmv {
+    margin-left: 55%;
+}
+
+.DeleteItemIcon{
+    max-width: 20px;
+    width: 20px; /* Adjust image size as needed */
+    height: auto; /* Maintain aspect ratio */   
+}
+
+
+
+@media (max-width : 790px) { /* mobile */
+    .body{
+        padding-top: 210px;
+    }
+    .ordermain{
+        padding-bottom: 100px;
+    }
+
+    th {
+        font-weight: 700;
+        font-family: helvetica;
+        font-size: 4.5vw;
+        padding-left: 10px;
+    }
+    
+    tr{
+        font-size: 20px;
+    }
+    
+    .DeleteItemIcon{
+        width: 20px; /* Adjust image size as needed */
+        height: auto; /* Maintain aspect ratio */   
+    }
 }
 
     
 
-@media (min-width : 431px){ /* Pc, Tablet */
+@media (min-width : 790px){ /* Pc, Tablet */
+    .body{
+        padding-top: 210px;
+        display: flex;
+    }
+    .dish{
+        text-align: right;
+    }
+    .main{
+        width: 70%;
+        left: 0;
+        flex: 1;
+        
+        margin-right: 10px; 
+    }
+    .ordercontainer{
+        text-align: left;
+    }
+    .ordermain{
+        width: 30%;
+        right: 0;
+        flex: 0 0 auto;
+
+        margin-left: 10px;
+    }
+
+    th {
+        font-weight: 700;
+        font-family: helvetica;
+        font-size: 1.5vw;
+        padding-left: 10px;
+    }
     
+    tr{
+        margin-left: 10px;
+        font-size: 20px;
+    }
+
 
 }

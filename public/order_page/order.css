@@ -2,18 +2,6 @@ body {
     background-color: #faf0e6;
 }
 
-.back {
-    text-decoration: none;
-    font-size: 20px;
-    background-color: white;
-    border-radius: 50%;
-    color: black;
-    margin-left: 15px;
-    margin-top: 15px;
-    padding: 8px 16px;
-    display: inline-block;
-}
-
 .logo {
     font-family: helvetica;
     font-weight: 750;

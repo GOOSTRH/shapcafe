@@ -1,48 +1,76 @@
 body {
-    background-color: #faf0e6;
+    background-color: rgb(240, 240, 240);
+    background-image: url("../background_2.png"), url("../background_1.png");
+    background-position: bottom  right, top left;
+    background-repeat: no-repeat, no-repeat;
+    background-attachment: fixed,fixed;
+    background-position-x: 0,0;
+    background-position-y: 0,0;
+    background-size: cover;
 }
 
-.back {
+.TopDiv {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 1);
+    z-index: 1000;
+}
+
+
+.nav {
+    text-align: center; /* Center the buttons horizontally */
+}
+
+.btn {
+    display: inline-block; /* Make the buttons inline with the logo */
+    margin: 0 10px; /* Add some spacing between the buttons */
     text-decoration: none;
-    font-size: 20px;
-    background-color: white;
-    border-radius: 50%;
-    color: black;
-    margin-left: 15px;
-    margin-top: 15px;
-    padding: 8px 16px;
-    display: inline-block;
+    padding: 10px 20px;
+    padding-bottom: 15px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    font-weight: bold;
+    position: relative; /* Position relative for the vertical line */
+    color: #000; /* Set text color */
+    background-color: transparent;
+    font-family: Helvetica;
+    transition: all 0.2s ease;
 }
 
 
-.dishb, .sdish, .oth{
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: 450;
-    background-color: white;
-    color: black;
-    padding: 10px;
-    display: inline-block;
-    text-align: center;
-    margin-top: 20px;
-    margin-left: 6px;
-}
 
 .btn:hover {
     transition-delay: 180ms;
     background-color: rgba(79, 78, 78, 0.558);
 }
 
-.btn{
-    border-radius: 50%;
+.btn:not(.menu):before {
+    content: ""; /* Add content to create the vertical line */
+    position: absolute; /* Position the line absolutely */
+    top: 0;
+    bottom: 0;
+    left: -10px; /* Adjust the position to overlap with the previous button */
+    width: 1px; /* Set width of the vertical line */
+    background-color: black; /* Set color of the vertical line */
 }
 
-.logo {
-    font-family: helvetica;
-    font-weight: 750;
-    font-size: 35px;
+.LogoBtn {
+    display: inline-block;
     margin-top: 20px;
     margin-left: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0; /* Remove padding to ensure the image fits properly */
+    right: 10px;
+}
+
+
+.LogoBtn, .Logo {
+    width: 200px; /* Adjust image size as needed */
+    height: auto; /* Maintain aspect ratio */
 }
 
 .visibledevice {
@@ -58,7 +86,7 @@ body {
     font-family: helvetica;
 }
 
-.gs {
+.GoToMenuBtn {
     background-color: #faf0e6;
     padding: 10px;
     text-align: center;
@@ -71,14 +99,51 @@ body {
 }
 
 
-
-
-@media (max-width : 431px) { /* mobile */
-    
+@media (max-width : 750px) { /* mobile */
+    .Logo, .LogoBtn{
+        display: block;
+    }
+    .LogoBtn{
+        margin-bottom: 20px;
+    }
+    .LogoNav{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .body{
+        padding-top: 150px;
+    }
+    .btn{
+        padding: 3vw;
+        font-size: 3vw;
+        margin: 1vw;
+    }
 }
 
+@media (min-width : 750px) { /* PC and Tablet */
+    
+    .LogoNav,
+    .nav {
+        display: inline-block;
+        vertical-align: middle; /* Align the sections vertically */
+    }
 
-@media (min-width : 431px) { /* PC and Tablet */
+    .body{
+        padding-top: 100px;
+    }
+    
+    .LogoNav {
+        justify-content: flex-start; /* Align items horizontally to the start */
+    }
+    
+    .nav {
+        justify-content: flex-end; /* Align items horizontally to the end */
+    }
 
+    .main{
+        width: 50%;
+    }
+    
 }
 
