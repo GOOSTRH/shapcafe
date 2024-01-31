@@ -120,6 +120,86 @@ LogoCafe { /* 'cafe' part of the header*/
 }
 
 
+.loading-screen {
+  text-align: center;
+  transition: opacity 0.5s; /* Fade transition */
+  
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0; /* Background color for the loading screen */
+}
+
+.loading-screen.visible {
+  display: block; /* Show the loading screen when the 'visible' class is added */
+}
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: -100%; /* Initially hidden off the left side of the screen */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+  z-index: 9999; /* Ensure it's on top of other elements */
+  transition: left 0.5s; /* Slide transition */
+}
+
+.loading-screen.visible {
+  left: 0; /* Slide in from left to right */
+}
+
+.loading-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+
+.s,.h,.a1,.p,.space,.c,.a2,.f,.e {
+  font-size: 48px;
+  display: inline-block;
+  margin: 0;
+}
+
+.s, .h, .a1, .p {
+  animation: bounce 0.5s infinite alternate;
+  color: #00a86b;
+  font-family: Helvetica;
+}
+
+.c, .a2, .f, .e {
+  animation: bounce 0.5s infinite alternate;
+  color: #ff7900;
+  font-family: Helvetica;
+}
+
+.s {animation-delay: 0s;}
+.h {animation-delay: 0.1s;}
+.a1 {animation-delay: 0.2s;}
+.p {animation-delay: 0.3s;}
+
+.c {animation-delay: 0.5s;}
+.a2 {animation-delay: 0.6s;}
+.f {animation-delay: 0.7s;}
+.e {animation-delay: 0.8s;}
+
+
+@keyframes bounce {
+  0% {
+      transform: translateY(0);
+  }
+  100% {
+      transform: translateY(-20px);
+  }
+}
+
 @media only screen and (min-width: 400px) {
   body {
 

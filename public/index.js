@@ -17,6 +17,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
+const loadingScreen = document.querySelector('.loading-screen');
 
 
 const SignInBtn = document.getElementById('LoginBtn');
@@ -29,6 +30,8 @@ SignInBtn.addEventListener('click', function(event) {
     // Call your signup function
     signin();
 });
+
+
 
 
 // Set up our register function, sign up function
@@ -47,7 +50,7 @@ function signin(){
         return;
     }
 
-
+    showLoadingScreen();
     // Moving on to Auth
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -64,19 +67,21 @@ function signin(){
                     GoHome();
                 })
                 .catch(error => {
+                    hideLoadingScreen();
                     console.error('Error saving user data:', error);
                     alert('Error Loggin in user. Please try again later.');
                 });
         })
         .catch((error) => {
-                console.error('Error Sign in user:', error);
-                if (errorCode === 'auth/invalid-credential') {
-                    alert('Invalid Email, Please sign up before Logging in');
-                } else {
-                    alert(errorMessage);
-                }
-                const errorCode = error.code;
-                const errorMessage = error.message;
+            hideLoadingScreen();
+            console.error('Error Sign in user:', error);
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            if (errorCode === 'auth/invalid-credential') {
+                alert('Invalid Email, Please sign up before Logging in');
+            } else {
+                alert(errorMessage);
+            }
         });
 }
 
@@ -96,7 +101,15 @@ function validate_password(password){
     return true;
 }
 
+// Function to show the loading screen
+function showLoadingScreen() {
+    loadingScreen.classList.add('visible'); // Add the 'visible' class to show the loading screen
+}
 
+// Function to hide the loading screen
+function hideLoadingScreen() {
+    loadingScreen.classList.remove('visible'); // Remove the 'visible' class to hide the loading screen
+}
 
 const PswdToggleBtn = document.getElementById('ToggleBtn');
 
@@ -116,10 +129,10 @@ function togglePasswordVisibility() {
   
     if (PswdField.type === "password") {
         PswdField.type = "text";
-        ToggleBtnImg.src = "shown.png";
+        ToggleBtnImg = "shown.png";
     } else {
         PswdField.type = "password";
-        ToggleBtnImg.src = "hidden.png";
+        ToggleBtnImg = "hidden.png";
     }
 }
 

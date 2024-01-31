@@ -17,6 +17,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
+const loadingScreen = document.querySelector('.loading-screen');
 
 
 const SignUpBtn = document.getElementById('RegisterBtn');
@@ -47,7 +48,7 @@ function signup(){
         return;
     }
     
-
+    showLoadingScreen();
     // Moving on to Auth
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -65,11 +66,13 @@ function signup(){
                     GoHome();
                 })
                 .catch(error => {
+                    hideLoadingScreen();
                     console.error('Error saving user data:', error);
                     alert('Error creating user. Please try again later.');
                 });
         })
         .catch((error) => {
+            hideLoadingScreen();
             console.error('Error creating user:', error);
             const errorCode = error.code;
             const errorMessage = error.message;
@@ -97,6 +100,16 @@ function validate_password(password){
     return true;
 }
 
+// Function to show the loading screen
+function showLoadingScreen() {
+    loadingScreen.classList.add('visible'); // Add the 'visible' class to show the loading screen
+}
+
+// Function to hide the loading screen
+function hideLoadingScreen() {
+    loadingScreen.classList.remove('visible'); // Remove the 'visible' class to hide the loading screen
+}
+
 
 const PswdToggleBtn = document.getElementById('ToggleBtn');
 
@@ -116,10 +129,10 @@ function togglePasswordVisibility() {
   
     if (PswdField.type === "password") {
         PswdField.type = "text";
-        ToggleBtnImg.src = "../shown.png";
+        ToggleBtnImg = "../shown.png";
     } else {
         PswdField.type = "password";
-        ToggleBtnImg.src = "../hidden.png";
+        ToggleBtnImg = "../hidden.png";
     }
 }
 
