@@ -79,7 +79,11 @@ function signin(){
             const errorMessage = error.message;
             if (errorCode === 'auth/invalid-credential') {
                 alert('Invalid Email, Please sign up before Logging in');
-            } else {
+            } else if (errorCode == 'auth/internal-error') {
+                alert('Internal Error, please try again later.');
+            } else if (errorCode == 'auth/user-not-found') {
+                alert('No user found.');
+            } else  {
                 alert(errorMessage);
             }
         });

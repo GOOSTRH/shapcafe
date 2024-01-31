@@ -76,8 +76,13 @@ function signup(){
             console.error('Error creating user:', error);
             const errorCode = error.code;
             const errorMessage = error.message;
+
             if (errorCode === 'auth/weak-password') {
                 alert('The password is too weak.');
+            } else if (errorCode == 'auth/email-already-exists') {
+                alert('Invalid Email, email already signed up.');
+            } else if (errorCode == 'auth/internal-error') {
+                alert('Internal Error, please try again later.');
             } else {
                 alert(errorMessage);
             }
