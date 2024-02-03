@@ -93,17 +93,13 @@ LogoCafe { /* 'cafe' part of the header*/
   font-weight: 700;
   margin-top: 20px;
   text-align: center;
+  font-size: small;
 }
 
 .SignupMessage1{
-  text-align: center;
   color: #acacac;
   font-size: small;
-}
-
-.SignupMessage2{
-  text-align: center;
-  font-size: small;
+  padding-top: 10px;
 }
 
 .LoginBtn {

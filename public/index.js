@@ -54,23 +54,29 @@ function signin(){
     // Moving on to Auth
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            // The user is signed in successfully
             const user = userCredential.user;
-            const user_data = {
-                last_login: Date.now()
-            };
+            if (user.emailVerified) {
+                // The user is signed in successfully
+                const user_data = {
+                    last_login: Date.now()
+                };
 
-            // Save user data to the database
-            update(ref(database, 'users/' + user.uid), user_data)
-                .then(() => {
-                    console.log('User data saved successfully');
-                    GoHome();
-                })
-                .catch(error => {
-                    hideLoadingScreen();
-                    console.error('Error saving user data:', error);
-                    alert('Error Loggin in user. Please try again later.');
-                });
+                // Save user data to the database
+                update(ref(database, 'users/' + user.uid), user_data)
+                    .then(() => {
+                        console.log('User data saved successfully');
+                        GoHome();
+                    })
+                    .catch(error => {
+                        hideLoadingScreen();
+                        console.error('Error saving user data:', error);
+                        alert('Error Loggin in user. Please try again later.');
+                    });
+            }else{
+                hideLoadingScreen();
+                alert("Your email hasn't been verified.");
+            }
+            
         })
         .catch((error) => {
             hideLoadingScreen();
@@ -78,7 +84,7 @@ function signin(){
             const errorCode = error.code;
             const errorMessage = error.message;
             if (errorCode === 'auth/invalid-credential') {
-                alert('Invalid Email, Please sign up before Logging in');
+                alert('Wrong password or Invalid Email.');
             } else if (errorCode == 'auth/internal-error') {
                 alert('Internal Error, please try again later.');
             } else if (errorCode == 'auth/user-not-found') {

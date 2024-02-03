@@ -1,6 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js';
 import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyD9MsZE2sTpVoBosSDcbyXPDdN79IlVUUM",
@@ -39,6 +39,8 @@ function signup(){
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
 
+    
+
     // Validate input fields
     if (!validate_email(email)){
         alert('Please enter your shap email address correctly');
@@ -51,42 +53,40 @@ function signup(){
     showLoadingScreen();
     // Moving on to Auth
     createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // The user is signed up successfully
-            const user = userCredential.user;
-            const user_data = {
-                email: email,
-                last_login: Date.now()
-            };
-
-            // Save user data to the database
-            set(ref(database, 'users/' + user.uid), user_data)
-                .then(() => {
-                    console.log('User data saved successfully');
-                    GoHome();
-                })
-                .catch(error => {
-                    hideLoadingScreen();
-                    console.error('Error saving user data:', error);
-                    alert('Error creating user. Please try again later.');
-                });
-        })
-        .catch((error) => {
+    .then((userCredential) => {
+        const user = userCredential.user;
+        if (!user.emailVerified) {
             hideLoadingScreen();
-            console.error('Error creating user:', error);
-            const errorCode = error.code;
-            const errorMessage = error.message;
+            // Send email verification
+            sendEmailVerification(user)
+            .then(() => {
+                // Email verification sent
+                console.log("Email verification sent to", email);
+                alert("A verification email has been sent to your email address.\nPlease verify your email before logging in.");
+                GoLogin();
+            })
+            .catch((error) => {
+                console.error("Error sending email verification:", error.message);
+                console.error("Error code: ", error.code);
+            });
 
-            if (errorCode === 'auth/weak-password') {
-                alert('The password is too weak.');
-            } else if (errorCode == 'auth/email-already-exists') {
-                alert('Invalid Email, email already signed up.');
-            } else if (errorCode == 'auth/internal-error') {
-                alert('Internal Error, please try again later.');
-            } else {
-                alert(errorMessage);
-            }
-        });
+        }
+    })
+    .catch((error) => {
+        hideLoadingScreen();
+        console.error('Error creating user:', error);
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        if (errorCode === 'auth/weak-password') {
+            alert('The password is too weak.');
+        } else if (errorCode === 'auth/email-already-in-use') {
+            alert('The email address is already in use.');
+        } else {
+            alert(errorMessage);
+        }
+    });
+
 }
 
 
@@ -142,6 +142,6 @@ function togglePasswordVisibility() {
 }
 
 
-function GoHome(){
-    window.location.href = "../home_page/home.html";
+function GoLogin(){
+    window.location.href = "../index.html";
 }
