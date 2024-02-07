@@ -91,11 +91,10 @@ function signup(){
 
 
 function validate_email(email){
-
+    if(email == "ShapCafeAdmin@proton.me") return true;
     let expression = /^[^@]+@\w+(\.\w+)+\w$/;
     if(expression.test(email) == false ) return false;
     if(email.substr(email.length - 12) != "@shap.edu.ph" ) return false;
-    if(email == "ShapCafeAdmin2024@proton.me") return true;
     return true;
 }
 

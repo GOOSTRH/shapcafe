@@ -1,9 +1,21 @@
 {
   "rules": {
- 		"users": {
+    "users": {
       "$uid": {
         ".read": "$uid === auth.uid",
-        ".write": "$uid === auth.uid"
+        ".write": "$uid === auth.uid",
+        "email":{
+          ".read": "auth != null",
+      		".write": "auth != null"
+        }
+      }
+    },
+    "order": {
+      ".read": "auth != null",
+      ".write": "auth != null",
+      "$uid": {
+        ".read": "auth != null",
+        ".write": "auth != null"
       }
     }
   }

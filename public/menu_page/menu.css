@@ -19,7 +19,6 @@ body {
 
 .background{
     text-align: center;
-    transition: opacity 0.5s; /* Fade transition */
 
     margin: 0;
     padding: 0;
@@ -34,7 +33,6 @@ body {
     height: 100%;
     background-color: rgba(0,0,0, 0.6); /* Semi-transparent background */
     z-index: -1; /* Ensure it's on top of other elements */
-    transition: left 0.5s; /* Slide transition */
 }
 
 .TopDiv {
@@ -141,7 +139,7 @@ hr{
     border: transparent;
 }
 
-.AddToCart{
+.AddToCart,.CheckOut{
     text-align: center;
     display: inline-block; /* Make the buttons inline with the logo */
     text-decoration: none;
@@ -159,9 +157,13 @@ hr{
     width: 100%;
 }
 
-.AddToCart:hover {
+.AddToCart:hover,.CheckOut:hover {
     transition-delay: 180ms;
     background-color: rgba(255, 179, 0, 0.886);
+}
+
+.CheckOut{
+    background-color: rgba(251, 255, 0, 0.5);
 }
 
 p {

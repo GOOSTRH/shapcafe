@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js';
-import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
+import { getDatabase, ref, update, onValue} from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
 
 const firebaseConfig = {
@@ -57,21 +57,41 @@ function signin(){
             const user = userCredential.user;
             if (user.emailVerified) {
                 // The user is signed in successfully
+
+                var permission = "student";
+                if(
+                    email == "ShapCafeAdmin@proton.me"
+                    ||
+                    email == "jeehwan.park@shap.edu.ph"
+                    ||
+                    email == "rosario.artanisren@shap.edu.ph"
+                    ||
+                    email == "oblea.revjonezekieljerome@shap.ehu.ph"
+                    ||
+                    email == "dienzo.osmundniles@shap.edu.ph"
+                    ||
+                    email == "caseydylan.verzo@shap.edu.ph"
+                    ){
+                    permission = "admin"
+                }
+
                 const user_data = {
+                    email: email,
+                    user : permission,
                     last_login: Date.now()
                 };
-
+                
                 // Save user data to the database
                 update(ref(database, 'users/' + user.uid), user_data)
                     .then(() => {
                         console.log('User data saved successfully');
-                        GoHome();
+                        CheckUser(user);
                     })
                     .catch(error => {
                         hideLoadingScreen();
                         console.error('Error saving user data:', error);
                         alert('Error Loggin in user. Please try again later.');
-                    });
+                });
             }else{
                 hideLoadingScreen();
                 alert("Your email hasn't been verified.");
@@ -97,11 +117,10 @@ function signin(){
 
 
 function validate_email(email){
-
+    if(email == "ShapCafeAdmin@proton.me") return true;
     let expression = /^[^@]+@\w+(\.\w+)+\w$/;
     if(expression.test(email) == false ) return false;
     if(email.substr(email.length - 12) != "@shap.edu.ph" ) return false;
-    if(email == "ShapCafeAdmin2024@proton.me") return true;
     return true;
 }
 
@@ -149,4 +168,25 @@ function togglePasswordVisibility() {
 
 function GoHome(){
     window.location.href = "/home_page/home.html";
+}
+
+function GoAdmin(){
+    window.location.href = "/admin_page/home_page/home.html";
+}
+
+function CheckUser(user){
+    const dbref = ref(database, 'users/' + user.uid + '/user');
+          
+    onValue(dbref, (snapshot) => {
+        const perm = snapshot.val();
+        console.log("user permission:"+perm);
+        if (perm == "admin") {
+            let message = ("Welcome! Admin");
+            alert(message);
+            GoAdmin();
+        }else{
+            GoHome();
+        }
+    });
+    
 }

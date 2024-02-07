@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="menu.css">
+    <title>Edit Menu / SHAPCafeStaff</title>
+
+    <link rel="shortcut icon" href="#" />
+    <script> // |--- this line of code is for favion.ico error prevention, do not delete</script>
+
+</head>
+
+<div class="background"></div>
+
+<div class="TopDiv">
+    <section class="LogoNav">
+        <a class="LogoBtn" type="button" id="LogoBtn" href="../home_page/home.html">
+            <img class="Logo" src="../../Logostaff.png" alt="Go to Homepage">
+        </a>
+    </section>
+    <div class="header1">Menus</div> 
+    <section class="nav">
+        <a class='maindish btn' href="menu.html">Dish</a>
+        <a class='sidedish btn' href="menusd.html">Side Dish</a>
+        <a class='other btn' href="menuo.html">Other</a>
+    </section>
+</div>
+
+
+<body class="body">
+    <section class="main">
+        <div class="menus">
+            <h1 class="logo" id="type" >Dish</h1>
+            <hr>
+            <input type="text" id="name" placeholder="name" class="name input" required style="display: block;" ></input>
+            <input type="text" id="description" placeholder="description" class="description input" required style="display: block;" ></input>
+            <input type="text" id="price" placeholder="price" class="price input" required style="display: block;" ></input>
+            <button class="addmenubtn" id="addmenubtn" style="display: block;">Add Menu</button>                
+        </div>
+    </section>
+
+    <script type="module" src="menu.js"></script>
+</body>
+</html>

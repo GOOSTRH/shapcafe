@@ -69,14 +69,9 @@ LogoCafe { /* 'cafe' part of the header*/
   height: auto; /* Maintain aspect ratio */
 }
 
-
-
-
 .email{
   justify-content: center;
-  align-items: center;
 }
-
 
 .email,.pswd {
   border-radius: 20px;
