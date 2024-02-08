@@ -19,15 +19,12 @@ const auth = getAuth(app);
 const database = getDatabase(app);
 
 auth.onAuthStateChanged(function(user) {
-    let data = "N/A";
     if (user) {
       console.log("User is logged in:", user);
-
       const dbref = ref(database, 'users/' + user.uid + '/user');
-      
       onValue(dbref, (snapshot) => {
         console.log("user permission:"+snapshot.val());
-        if(snapshot.val() == "admin"){
+        if(snapshot.val() == "admin"){ // if the user is admin, send him the to the admin pages
           window.location.href = "../admin_page/home_page/home.html";
         }
       });

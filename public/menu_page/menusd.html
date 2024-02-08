@@ -56,117 +56,120 @@
         </div>
     </section>
     
-<script>
-    function addToCart(name, price) {
-        // initializing cookie from the browser
-        let cart = getCookie('cart') ? JSON.parse(getCookie('cart')) : [];
-        // initializing cart's index
-        let existingItemIndex = cart.findIndex(item => item.name === name);
-        if (existingItemIndex !== -1) {
-            cart[existingItemIndex].quantity++;
-        } else {
-            cart.push({ name, price, quantity: 1 });
-        }
-        // adding cookie
-        document.cookie = `cart=${JSON.stringify(cart)}; expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()}; path=/`;
-        renderCart();
-    }
-
-    function getCookie(name) {
-        const decodedCookie = decodeURIComponent(document.cookie);
-        const cookies = decodedCookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            let cookie = cookies[i];
-            while (cookie.charAt(0) === ' ') {
-                cookie = cookie.substring(1);
+    <script>//=====================================================================</script>
+    <script>
+        function addToCart(name, price) {
+            // initializing cookie from the browser
+            let cart = getCookie('cart') ? JSON.parse(getCookie('cart')) : [];
+            // initializing cart's index
+            let existingItemIndex = cart.findIndex(item => item.name === name);
+            if (existingItemIndex !== -1) {
+                cart[existingItemIndex].quantity++;
+            } else {
+                cart.push({ name, price, quantity: 1 });
             }
-            if (cookie.indexOf(name) === 0) {
-                return cookie.substring(name.length + 1, cookie.length);
-            }
+            // adding cookie
+            document.cookie = `cart=${JSON.stringify(cart)}; expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()}; path=/`;
+            renderCart();
         }
-        return "";
-    }
-
-    // Render cart items
-    function renderCart() {
-        const cartItemsContainer = document.getElementById('cart-items');
-        cartItemsContainer.innerHTML = '';
-
-        let cart = getCookie('cart') ? JSON.parse(getCookie('cart')) : [];
-        let totalPrice = 0;
-
-        cart.forEach((item, index) => {
-            const total = item.price * item.quantity;
-            totalPrice += total;
-
-            const row = `
+    
+        function getCookie(name) {
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const cookies = decodedCookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i];
+                while (cookie.charAt(0) === ' ') {
+                    cookie = cookie.substring(1);
+                }
+                if (cookie.indexOf(name) === 0) {
+                    return cookie.substring(name.length + 1, cookie.length);
+                }
+            }
+            return "";
+        }
+    
+        // Render cart items
+        function renderCart() {
+            // initializing the the Container
+            const cartItemsContainer = document.getElementById('cart-items');
+            // making the Container NOT empty so we can put elements in
+            cartItemsContainer.innerHTML = '';
+    
+            let cart = getCookie('cart') ? JSON.parse(getCookie('cart')) : [];
+            let totalPrice = 0; // initializing the total price
+    
+            cart.forEach((item, index) => { // for each item in the cart
+                const total = item.price * item.quantity;
+                totalPrice += total;
+    
+                const row = `
+                    <tr>
+                        <td><p class="name">${item.name}</p></td>
+                        <td><input class="quan" type="number" value="${item.quantity}" min="1" onchange="updateQuantity(${index}, this.value)"></td>
+                        <td><p class="ttl">₱${total}</p></td>
+                        <td><a class="rmv" onclick="removeFromCart(${index})">
+                            <img class="DeleteItemIcon" src="../DeleteItem.png" alt="Remove Item">
+                            </a></td>
+                    </tr>
+                `;
+                cartItemsContainer.innerHTML += row;
+            });
+    
+            // Display total price
+            const totalRow = `
                 <tr>
-                    <td><p class="name">${item.name}</p></td>
-                    <td><input class="quan" type="number" value="${item.quantity}" min="1" onchange="updateQuantity(${index}, this.value)"></td>
-                    <td><p class="ttl">₱${total}</p></td>
-                    <td><a class="rmv" onclick="removeFromCart(${index})">
-                        <img class="DeleteItemIcon" src="../DeleteItem.png" alt="Remove Item">
-                        </a></td>
+                    <td colspan="3">Total:</td>
+                    <td>₱${totalPrice}</td>
+                    <td></td>
                 </tr>
             `;
-            cartItemsContainer.innerHTML += row;
-        });
+            cartItemsContainer.innerHTML += totalRow;
 
-        // Display total price
-        const totalRow = `
-            <tr>
-                <td colspan="3">Total:</td>
-                <td>₱${totalPrice}</td>
-                <td></td>
-            </tr>
-        `;
-        cartItemsContainer.innerHTML += totalRow;
-
-        const checkoutRow = `
-            <tr>
-                <button class="CheckOut" id="CheckOutBtn" Onclick="Checkout()" >Check out</button>
-            </tr>
-        `;
-        cartItemsContainer.innerHTML += checkoutRow;
-    }
-
-    // Function to get a cookie
-    function getCookie(name) {
-        const decodedCookie = decodeURIComponent(document.cookie);
-        const cookies = decodedCookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            let cookie = cookies[i];
-            while (cookie.charAt(0) === ' ') {
-                cookie = cookie.substring(1);
-            }
-            if (cookie.indexOf(name) === 0) {
-                return cookie.substring(name.length + 1, cookie.length);
-            }
+            const checkoutRow = `
+                <tr>
+                    <button class="CheckOut" id="CheckOutBtn" Onclick="Checkout()" >Check out</button>
+                </tr>
+            `;
+            cartItemsContainer.innerHTML += checkoutRow;
         }
-        return "";
-    }
-
-    // Remove item from cart
-    function removeFromCart(index) {
-        let cart = getCookie('cart') ? JSON.parse(getCookie('cart')) : [];
-        cart.splice(index, 1);
-        document.cookie = `cart=${JSON.stringify(cart)}; expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()}; path=/`;
+    
+        // Function to get a cookie
+        function getCookie(name) {
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const cookies = decodedCookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i];
+                while (cookie.charAt(0) === ' ') {
+                    cookie = cookie.substring(1);
+                }
+                if (cookie.indexOf(name) === 0) {
+                    return cookie.substring(name.length + 1, cookie.length);
+                }
+            }
+            return "";
+        }
+    
+        // Remove item from cart
+        function removeFromCart(index) {
+            let cart = getCookie('cart') ? JSON.parse(getCookie('cart')) : [];
+            cart.splice(index, 1);
+            document.cookie = `cart=${JSON.stringify(cart)}; expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()}; path=/`;
+            renderCart();
+        }
+    
+        // Update quantity of an item in the cart
+        function updateQuantity(index, newQuantity) {
+            let cart = getCookie('cart') ? JSON.parse(getCookie('cart')) : [];
+            cart[index].quantity = parseInt(newQuantity);
+            document.cookie = `cart=${JSON.stringify(cart)}; expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()}; path=/`;
+            renderCart();
+        }
+    
+        // Render the initial cart items when the page loads
         renderCart();
-    }
-
-    // Update quantity of an item in the cart
-    function updateQuantity(index, newQuantity) {
-        let cart = getCookie('cart') ? JSON.parse(getCookie('cart')) : [];
-        cart[index].quantity = parseInt(newQuantity);
-        document.cookie = `cart=${JSON.stringify(cart)}; expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()}; path=/`;
-        renderCart();
-    }
-
-    // Render the initial cart items when the page loads
-    renderCart();
-</script>
-
-
+    </script>
+    
+    
     <script type="module">
         //imports
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js';
@@ -197,10 +200,11 @@
 
         // This is a function loader, it loads when the website is fully loaded
         document.addEventListener("DOMContentLoaded", function() {
+            // render the cart when website fully loaded, so the cart can show the items on default
             renderCart();
         });
 
-        // Loads when the website is fully loaded
+        // Loads when the website is fully loaded, this is for the menus to load from the database
         document.addEventListener("DOMContentLoaded", async function() {
             // get the type of the menu wanted from the database by checking the header2
             const type = (document.querySelector('.header2')).textContent;
@@ -279,7 +283,6 @@
             let uid;
             
             // checking user's status to get 'user' variable
-            // checking user's status to get 'user' variable
             auth.onAuthStateChanged(function(user) {
                 if (user) {
                     // initializing user's uid to uis
@@ -287,26 +290,26 @@
 
                     // Update the database with orderData
                     update(ref(database, 'order/' + uid), orderData)
-                        .then(() => {
-                            console.log('Order checked out successfully');
-                            alert('Order checked out successfully');
-                        })
-                        .catch(error => {
-                            console.error('Error checking out order:', error);
-                            alert('Error Checking out order. Please try again later.');
+                    .then(() => {
+                        console.log('Order checked out successfully');
+                        alert('Order checked out successfully');
+                    })
+                    .catch(error => {
+                        console.error('Error checking out order:', error);
+                        alert('Error Checking out order. Please try again later.');
                     });
 
                 } else {
                     console.log("User is logged out");
+                    // changes page to index page
                     window.location.href = "/public/index.html";
                     return;
                 }
             });
-
-
         }
+        // globalize the funtion checkout
         window.Checkout = Checkout; 
     </script>
     <script type="module" src="menu.js"></script>
-    </body>
-    </html>
+</body>
+</html>

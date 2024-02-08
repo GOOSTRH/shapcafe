@@ -55,11 +55,13 @@ function signin(){
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
+
+            // if the users email is verified
             if (user.emailVerified) {
                 // The user is signed in successfully
-
-                var permission = "student";
-                if(
+                // initialize the permission with initial data of 'user'
+                var permission = "user";
+                if( // admin list
                     email == "ShapCafeAdmin@proton.me"
                     ||
                     email == "jeehwan.park@shap.edu.ph"
@@ -75,6 +77,7 @@ function signin(){
                     permission = "admin"
                 }
 
+                // initialize users data
                 const user_data = {
                     email: email,
                     user : permission,
@@ -85,20 +88,21 @@ function signin(){
                 update(ref(database, 'users/' + user.uid), user_data)
                     .then(() => {
                         console.log('User data saved successfully');
+                        // check if the user is an admin or a user
                         CheckUser(user);
                     })
-                    .catch(error => {
+                    .catch(error => { // here's for when firebase have problem ( or other problem
                         hideLoadingScreen();
                         console.error('Error saving user data:', error);
                         alert('Error Loggin in user. Please try again later.');
                 });
-            }else{
+            }else{ // here's for when the email is not verified
                 hideLoadingScreen();
                 alert("Your email hasn't been verified.");
             }
             
         })
-        .catch((error) => {
+        .catch((error) => { // here's when there is a problem with the user's auth
             hideLoadingScreen();
             console.error('Error Sign in user:', error);
             const errorCode = error.code;
@@ -117,16 +121,15 @@ function signin(){
 
 
 function validate_email(email){
-    if(email == "ShapCafeAdmin@proton.me") return true;
-    let expression = /^[^@]+@\w+(\.\w+)+\w$/;
-    if(expression.test(email) == false ) return false;
-    if(email.substr(email.length - 12) != "@shap.edu.ph" ) return false;
+    if(email == "ShapCafeAdmin@proton.me") return true; // returns true for admin only account
+    let expression = /^[^@]+@\w+(\.\w+)+\w$/; // initializing the expression to be formatted for the email format
+    if(expression.test(email) == false ) return false; // return false when the email is in the wrong format
+    if(email.substr(email.length - 12) != "@shap.edu.ph" ) return false; // if the email is not shap mail
     return true;
 }
 
 function validate_password(password){
-    // Firebase only accepts passwords over 6 characters
-    if(password.length <= 6) return false;
+    if(password.length <= 6) return false;// Firebase only accepts passwords over 6 characters
     return true;
 }
 
@@ -155,11 +158,11 @@ PswdToggleBtn.addEventListener('click', function(event) {
 function togglePasswordVisibility() {
     var PswdField = document.getElementById("password");
     var ToggleBtnImg = document.getElementById("ToggleIcon");
-  
-    if (PswdField.type === "password") {
+    // info: when the field type is password, the data inside is hidden, if else, it's not
+    if (PswdField.type === "password") { // if the type is password
         PswdField.type = "text";
         ToggleBtnImg = "shown.png";
-    } else {
+    } else { // if else
         PswdField.type = "password";
         ToggleBtnImg = "hidden.png";
     }
@@ -175,6 +178,7 @@ function GoAdmin(){
 }
 
 function CheckUser(user){
+    // initializing the dbref
     const dbref = ref(database, 'users/' + user.uid + '/user');
           
     onValue(dbref, (snapshot) => {

@@ -22,12 +22,7 @@
     </section>
 </div>
 
-
 <body class="body">
-
-
-    
-
     <script type="module">
         //imports
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js';
@@ -55,15 +50,12 @@
         
         //=================================================================
 
-
         // reloads the page when a order is checked out
         const orderRef = ref(database, "order/");
         onChildChanged(orderRef, (snapshot) => {
             // Here you can perform actions based on the value, or refresh the page, etc.
             location.reload();
         });
-
-
 
         // Loads when the website is fully loaded
         document.addEventListener("DOMContentLoaded", async function() {
@@ -139,22 +131,18 @@
             // Reference to the element you want to remove
             const elementRef = ref(database,'order/'+uid);
 
-            remove(elementRef)
+            remove(elementRef) // remove the completed order from the database
             .then(() => {
                 console.log("Element removed successfully.");
             })
             .catch((error) => {
                 console.error("Error removing element:", error);
             });
-
-
         }
 
-
-
+        // globolizing the function
         window.OrderComplete = OrderComplete; 
     </script>
     <script type="module" src="order.js"></script>
-    </body>
-    </html>
-    
+</body>
+</html>

@@ -56,6 +56,7 @@
         </div>
     </section>
     
+    <script>//=====================================================================</script>
     <script>
         function addToCart(name, price) {
             // initializing cookie from the browser
@@ -89,13 +90,15 @@
     
         // Render cart items
         function renderCart() {
+            // initializing the the Container
             const cartItemsContainer = document.getElementById('cart-items');
+            // making the Container NOT empty so we can put elements in
             cartItemsContainer.innerHTML = '';
     
             let cart = getCookie('cart') ? JSON.parse(getCookie('cart')) : [];
-            let totalPrice = 0;
+            let totalPrice = 0; // initializing the total price
     
-            cart.forEach((item, index) => {
+            cart.forEach((item, index) => { // for each item in the cart
                 const total = item.price * item.quantity;
                 totalPrice += total;
     
@@ -121,7 +124,7 @@
                 </tr>
             `;
             cartItemsContainer.innerHTML += totalRow;
-    
+
             const checkoutRow = `
                 <tr>
                     <button class="CheckOut" id="CheckOutBtn" Onclick="Checkout()" >Check out</button>
@@ -167,146 +170,146 @@
     </script>
     
     
-        <script type="module">
-            //imports
-            import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js';
-            import { getDatabase, ref, update, onValue, set} from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
-            import { getFirestore, doc, getDocs, collection, where, query } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
-            import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
-    
-            const firebaseConfig = {
-                apiKey: "AIzaSyD9MsZE2sTpVoBosSDcbyXPDdN79IlVUUM",
-                authDomain: "shapcafe-eb9f5.firebaseapp.com",
-                databaseURL: "https://shapcafe-eb9f5-default-rtdb.asia-southeast1.firebasedatabase.app",
-                projectId: "shapcafe-eb9f5",
-                storageBucket: "shapcafe-eb9f5.appspot.com",
-                messagingSenderId: "59729342111",
-                appId: "1:59729342111:web:8664c7357840a23ae3bcaa",
-                measurementId: "G-CR7GGCCC30"
-            };
-    
-            // Initializing firebase
-            const app = initializeApp(firebaseConfig);
-            const auth = getAuth(app);
-            const database = getDatabase(app);
-            const db = getFirestore(app);
-            const dbref = collection(db,"menus");
-            
-            //=================================================================
-    
-    
-            // This is a function loader, it loads when the website is fully loaded
-            document.addEventListener("DOMContentLoaded", function() {
-                renderCart();
-            });
-    
-            // Loads when the website is fully loaded
-            document.addEventListener("DOMContentLoaded", async function() {
-                // get the type of the menu wanted from the database by checking the header2
-                const type = (document.querySelector('.header2')).textContent;
-                // initializing collection
-                const q = query(collection(db, "menus"), where("Type", "==", type));
-                
-                // awaits query
-                const querySnapshot = await getDocs(q);
-    
-                // run through query and do shits with things in it
-                querySnapshot.forEach((doc) => { 
-                    console.log(doc.id, " => ", doc.data());
-                    console.log(doc.id, " => ", doc.data().Price);
-    
-                    const dishData = doc.data();
-                    
-                    // initialize the container here as a const for use
-                    const menuItemsContainer = document.querySelector('.dish');
-    
-                    // initializing all the variable needed
-                    const price = dishData.Price;
-                    const name = doc.id;
-                    const description = dishData.Description;
-    
-                    // initializing html code to push into menuItemsContainer
-                    const row = `
-    
-                        <hr>
-                        <h1>${name}</h1>
-                        <p class="desc">${description}</p>
-                        <p2 class="price">${price}₱</p2>
-                        <br>
-                        <button class="AddToCart" id="AddToCartBtn" Onclick="addToCart('${name}',${price})" >Add to cart</button>
-                        <hr>                        
-    
-                    `;
-                    menuItemsContainer.innerHTML += row;
-                
-                });
-            });
-    
-            function Checkout() {
-                // Get cart items from cookies
-                const cart = getCookie('cart') ? JSON.parse(getCookie('cart')) : [];
-    
-                // Do something with the cart items, such as sending them to the server or processing the checkout
-    
-                // Example: Log cart items to the console
-                console.log("Checkout - Cart Items:", cart);
-    
-                // Example: Clear the cart after checkout
-                document.cookie = `cart=; expires=${new Date(0).toUTCString()}; path=/`;
-                renderCart();
-                let orderData = {};
-                cart.forEach((item) => {
-                    const name = item.name;
-                    const price = item.price;
-                    const quantity = item.quantity;
-    
-                    // Create a data object for the current item
-                    const data = {
-                        price: price,
-                        quantity: quantity
-                    };
-    
-                    // Set the data object for the current item under the name key in orderData
-                    orderData[name] = data;
-    
-                    console.log("data:", data);
-                    console.log("order", orderData);
-                });
-    
-    
-                // initialize users name ex. Jeehwan.Park
-                let name;
-                let uid;
-                
-                // checking user's status to get 'user' variable
-                auth.onAuthStateChanged(function(user) {
-                    if (user) {
-                        // initializing user's uid to uis
-                        uid = user.uid;
+    <script type="module">
+        //imports
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js';
+        import { getDatabase, ref, update, onValue, set} from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
+        import { getFirestore, doc, getDocs, collection, where, query } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
 
-                        // Update the database with orderData
-                        update(ref(database, 'order/' + uid), orderData)
-                            .then(() => {
-                                console.log('Order checked out successfully');
-                                alert('Order checked out successfully');
-                            })
-                            .catch(error => {
-                                console.error('Error checking out order:', error);
-                                alert('Error Checking out order. Please try again later.');
-                        });
-    
-                    } else {
-                        console.log("User is logged out");
-                        window.location.href = "/public/index.html";
-                        return;
-                    }
-                });
-    
-    
-    
-            }
-            window.Checkout = Checkout; 
-        </script>
-        <script type="module" src="menu.js"></script>
-        </body>
-        </html>
+        const firebaseConfig = {
+            apiKey: "AIzaSyD9MsZE2sTpVoBosSDcbyXPDdN79IlVUUM",
+            authDomain: "shapcafe-eb9f5.firebaseapp.com",
+            databaseURL: "https://shapcafe-eb9f5-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "shapcafe-eb9f5",
+            storageBucket: "shapcafe-eb9f5.appspot.com",
+            messagingSenderId: "59729342111",
+            appId: "1:59729342111:web:8664c7357840a23ae3bcaa",
+            measurementId: "G-CR7GGCCC30"
+        };
+
+        // Initializing firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const database = getDatabase(app);
+        const db = getFirestore(app);
+        const dbref = collection(db,"menus");
+        
+        //=================================================================
+
+
+        // This is a function loader, it loads when the website is fully loaded
+        document.addEventListener("DOMContentLoaded", function() {
+            // render the cart when website fully loaded, so the cart can show the items on default
+            renderCart();
+        });
+
+        // Loads when the website is fully loaded, this is for the menus to load from the database
+        document.addEventListener("DOMContentLoaded", async function() {
+            // get the type of the menu wanted from the database by checking the header2
+            const type = (document.querySelector('.header2')).textContent;
+            // initializing collection
+            const q = query(collection(db, "menus"), where("Type", "==", type));
+            
+            // awaits query
+            const querySnapshot = await getDocs(q);
+
+            // run through query and do shits with things in it
+            querySnapshot.forEach((doc) => { 
+                console.log(doc.id, " => ", doc.data());
+                console.log(doc.id, " => ", doc.data().Price);
+
+                const dishData = doc.data();
+                
+                // initialize the container here as a const for use
+                const menuItemsContainer = document.querySelector('.dish');
+
+                // initializing all the variable needed
+                const price = dishData.Price;
+                const name = doc.id;
+                const description = dishData.Description;
+
+                // initializing html code to push into menuItemsContainer
+                const row = `
+
+                    <hr>
+                    <h1>${name}</h1>
+                    <p class="desc">${description}</p>
+                    <p2 class="price">${price}₱</p2>
+                    <br>
+                    <button class="AddToCart" id="AddToCartBtn" Onclick="addToCart('${name}',${price})" >Add to cart</button>
+                    <hr>                        
+
+                `;
+                menuItemsContainer.innerHTML += row;
+            
+            });
+        });
+
+        function Checkout() {
+            // Get cart items from cookies
+            const cart = getCookie('cart') ? JSON.parse(getCookie('cart')) : [];
+
+            // Do something with the cart items, such as sending them to the server or processing the checkout
+
+            // Example: Log cart items to the console
+            console.log("Checkout - Cart Items:", cart);
+
+            // Example: Clear the cart after checkout
+            document.cookie = `cart=; expires=${new Date(0).toUTCString()}; path=/`;
+            renderCart();
+            let orderData = {};
+            cart.forEach((item) => {
+                const name = item.name;
+                const price = item.price;
+                const quantity = item.quantity;
+
+                // Create a data object for the current item
+                const data = {
+                    price: price,
+                    quantity: quantity
+                };
+
+                // Set the data object for the current item under the name key in orderData
+                orderData[name] = data;
+
+                console.log("data:", data);
+                console.log("order", orderData);
+            });
+
+
+            // initialize users name ex. Jeehwan.Park
+            let name;
+            let uid;
+            
+            // checking user's status to get 'user' variable
+            auth.onAuthStateChanged(function(user) {
+                if (user) {
+                    // initializing user's uid to uis
+                    uid = user.uid;
+
+                    // Update the database with orderData
+                    update(ref(database, 'order/' + uid), orderData)
+                    .then(() => {
+                        console.log('Order checked out successfully');
+                        alert('Order checked out successfully');
+                    })
+                    .catch(error => {
+                        console.error('Error checking out order:', error);
+                        alert('Error Checking out order. Please try again later.');
+                    });
+
+                } else {
+                    console.log("User is logged out");
+                    // changes page to index page
+                    window.location.href = "/public/index.html";
+                    return;
+                }
+            });
+        }
+        // globalize the funtion checkout
+        window.Checkout = Checkout; 
+    </script>
+    <script type="module" src="menu.js"></script>
+</body>
+</html>

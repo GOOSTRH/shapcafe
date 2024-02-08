@@ -18,14 +18,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
-const db = getFirestore(app);
 
 auth.onAuthStateChanged(function(user) {
     if (user) {
       console.log("User is logged in:", user);
-
       const dbref = ref(database, 'users/' + user.uid + '/user');
-      
       onValue(dbref, (snapshot) => {
         console.log("user permission:"+snapshot.val());
       });

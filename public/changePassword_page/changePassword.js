@@ -18,8 +18,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
 const loadingScreen = document.querySelector('.loading-screen');
-
-
 const SendEmailBtn = document.getElementById('SendEmailBtn');
 
 // Add event listener to the button
@@ -59,17 +57,13 @@ function ChangePW(){
 
 }
 
-
 function validate_email(email){
-
+    if(email == "ShapCafeAdmin2024@proton.me") return true;
     let expression = /^[^@]+@\w+(\.\w+)+\w$/;
     if(expression.test(email) == false ) return false;
     if(email.substr(email.length - 12) != "@shap.edu.ph" ) return false;
-    if(email == "ShapCafeAdmin2024@proton.me") return true;
     return true;
 }
-
-
 
 // Function to show the loading screen
 function showLoadingScreen() {
@@ -80,9 +74,6 @@ function showLoadingScreen() {
 function hideLoadingScreen() {
     loadingScreen.classList.remove('visible'); // Remove the 'visible' class to hide the loading screen
 }
-
-
-
 
 function GoLogin(){
     window.location.href = "../index.html";
