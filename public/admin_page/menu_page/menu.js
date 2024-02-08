@@ -41,5 +41,6 @@ async function AddMenu( name, description, price ){
         'Type' : TypeText
     };
     await setDoc(doc(collection(db, 'menus'), name ), data);
+    location.reload();
     //                          db     col    doc    fields
 }
