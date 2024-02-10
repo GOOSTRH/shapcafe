@@ -38,15 +38,17 @@ function signup(){
     // Getting all our input fields
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
-
+    var alertMessage = document.getElementById('SignupMessage1');
     
 
     // Validate input fields
     if (!validate_email(email)){
-        alert('Please enter your shap email address correctly');
+        alertMessage.innerHTML = "Please enter your shap email address correctly.";
+        alertMessage.style.color = "red";
         return;
     } else if (!validate_password(password)){
-        alert('Please enter a valid password (password must be at least 6 characters)');
+        alertMessage.innerHTML = "Please enter a valid password (password must be at least 6 characters).";
+        alertMessage.style.color = "red";
         return;
     }
     
@@ -62,8 +64,10 @@ function signup(){
             .then(() => {
                 // Email verification sent
                 console.log("Email verification sent to", email);
-                alert("A verification email has been sent to your email address.\nPlease verify your email before logging in.");
-                GoLogin();
+
+
+                alertMessage.innerHTML = "A verification email has been sent to your email address.\n Please verify your email before logging in.";
+                alertMessage.style.color = "red";
             })
             .catch((error) => {
                 console.error("Error sending email verification:", error.message);
@@ -79,11 +83,14 @@ function signup(){
         const errorMessage = error.message;
 
         if (errorCode === 'auth/weak-password') {
-            alert('The password is too weak.');
+            alertMessage.innerHTML = "Your password is too weak.";
+            alertMessage.style.color = "red";
         } else if (errorCode === 'auth/email-already-in-use') {
-            alert('The email address is already in use.');
+            alertMessage.innerHTML = "The email is already in use.";
+            alertMessage.style.color = "red";
         } else {
-            alert(errorMessage);
+            alertMessage.innerHTML = `${errorMessage}`;
+            alertMessage.style.color = "red";
         }
     });
 
@@ -130,7 +137,7 @@ PswdToggleBtn.addEventListener('click', function(event) {
 function togglePasswordVisibility() {
     var PswdField = document.getElementById("password");
     var ToggleBtnImg = document.getElementById("ToggleIcon");
-  
+
     if (PswdField.type === "password") {
         PswdField.type = "text";
         ToggleBtnImg = "../shown.png";

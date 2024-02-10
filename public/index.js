@@ -43,10 +43,12 @@ function signin(){
 
     // Validate input fields
     if (!validate_email(email)){
-        alert('Please enter your shap email address correctly');
+        alertMessage.innerHTML = "Please enter your shap email address correctly.";
+        alertMessage.style.color = "red";
         return;
     } else if (!validate_password(password)){
-        alert('Please enter a valid password (password must be at least 6 characters)');
+        alertMessage.innerHTML = "Please enter a valid password (password must be at least 6 characters).";
+        alertMessage.style.color = "red";
         return;
     }
 
@@ -94,11 +96,13 @@ function signin(){
                     .catch(error => { // here's for when firebase have problem ( or other problem
                         hideLoadingScreen();
                         console.error('Error saving user data:', error);
-                        alert('Error Loggin in user. Please try again later.');
+                        alertMessage.innerHTML = "Error Loggin in user. Please try again later.";
+                        alertMessage.style.color = "red";
                 });
             }else{ // here's for when the email is not verified
                 hideLoadingScreen();
-                alert("Your email hasn't been verified.");
+                alertMessage.innerHTML = "Your email hasn't been verified.";
+                alertMessage.style.color = "red";
             }
             
         })
@@ -108,13 +112,17 @@ function signin(){
             const errorCode = error.code;
             const errorMessage = error.message;
             if (errorCode === 'auth/invalid-credential') {
-                alert('Wrong password or Invalid Email.');
+                alertMessage.innerHTML = "Wrong password or Invalid Email.";
+                alertMessage.style.color = "red";
             } else if (errorCode == 'auth/internal-error') {
-                alert('Internal Error, please try again later.');
+                alertMessage.innerHTML = "Internal Error, please try again later.";
+                alertMessage.style.color = "red";
             } else if (errorCode == 'auth/user-not-found') {
-                alert('No user found.');
+                alertMessage.innerHTML = "No User found.";
+                alertMessage.style.color = "red";
             } else  {
-                alert(errorMessage);
+                alertMessage.innerHTML = `${errorMessage}`;
+                alertMessage.style.color = "red";
             }
         });
 }
@@ -185,8 +193,6 @@ function CheckUser(user){
         const perm = snapshot.val();
         console.log("user permission:"+perm);
         if (perm == "admin") {
-            let message = ("Welcome! Admin");
-            alert(message);
             GoAdmin();
         }else{
             GoHome();

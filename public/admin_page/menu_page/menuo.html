@@ -27,7 +27,7 @@
 </div>
 
 
-<body class="body">
+<body class="EditMenuBody">
     <section class="main">
         <div class="menus">
             <h1 class="logo" id="type" >Other</h1>
@@ -41,4 +41,96 @@
 
     <script type="module" src="menu.js"></script>
 </body>
+
+
+<div class="ExistingMenu" id="ExistingMenu">
+    <section class="testsection">
+
+    </section>
+    
+    <script type="module">
+        //imports
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js';
+        import { getDatabase, ref, update, onValue, set, get, onChildChanged, remove} from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
+        import { getFirestore, doc, getDocs, collection, where, query, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD9MsZE2sTpVoBosSDcbyXPDdN79IlVUUM",
+            authDomain: "shapcafe-eb9f5.firebaseapp.com",
+            databaseURL: "https://shapcafe-eb9f5-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "shapcafe-eb9f5",
+            storageBucket: "shapcafe-eb9f5.appspot.com",
+            messagingSenderId: "59729342111",
+            appId: "1:59729342111:web:8664c7357840a23ae3bcaa",
+            measurementId: "G-CR7GGCCC30"
+        };
+
+        // Initializing firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const database = getDatabase(app);
+        const db = getFirestore(app);
+        const dbref = collection(db,"menus");
+        
+        //=================================================================
+        
+        // Loads when the website is fully loaded, this is for the menus to load from the database
+        document.addEventListener("DOMContentLoaded", async function() {
+            // get the type of the menu wanted from the database by checking the header2
+            const type = (document.querySelector('.logo')).textContent;
+            // initializing collection
+            const q = query(collection(db, "menus"), where("Type", "==", type));
+            
+            // awaits query
+            const querySnapshot = await getDocs(q);
+
+            // run through query and do shits with things in it
+            querySnapshot.forEach((doc) => { 
+                console.log(doc.id, " => ", doc.data());
+                console.log(doc.id, " => ", doc.data().Price);
+
+                const dishData = doc.data();
+                
+                // initialize the container here as a const for use
+                const divItemsContainer = document.querySelector("#ExistingMenu");
+                
+                
+                
+
+                // initializing all the variable needed
+                const price = dishData.Price;
+                const name = doc.id;
+                const description = dishData.Description;
+
+                // initializing html code to push into menuItemsContainer
+                const row = `
+                    <section class="main2 ${name}">
+                        <div class="menu ${name}">
+                            <h1>${name}</h1>
+                            <hr>
+                            <p class="desc2">${description}</p>
+                            <p2 class="price2">Price: ${price}₱</p2>
+                            <br>
+                            <div class="btn2div">
+                                <button class="Deletemenu btn2" id="DeletemenuBtn" Onclick="Deletemenu('${name}')" >Delete menu</button>
+                            </div>
+                        </div>                       
+                    </section>
+                `;
+                divItemsContainer.innerHTML += row;
+            
+            });
+        });
+
+        async function Deletemenu(menu){
+            await deleteDoc(doc(db, "menus", menu));
+            location.reload();
+        }
+        window.Deletemenu = Deletemenu;
+
+    </script>
+    <script type="module" src="menu.js"></script>
+
+</div>
 </html>

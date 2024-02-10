@@ -78,7 +78,7 @@
         // Loads when the website is fully loaded, this is for the menus to load from the database
         document.addEventListener("DOMContentLoaded", async function() {
             // get the type of the menu wanted from the database by checking the header2
-            const type = (document.querySelector('.header1')).textContent;
+            const type = (document.querySelector('.logo')).textContent;
             // initializing collection
             const q = query(collection(db, "menus"), where("Type", "==", type));
             
