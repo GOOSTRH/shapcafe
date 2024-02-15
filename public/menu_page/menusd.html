@@ -37,6 +37,7 @@
         <div class="ordercontainer">
 
             <h1 class="orderheader">Shopping Cart</h2>
+            <a class="alertMessage1" id="alertMessage1">TEST</a>
 
             <hr>
             
@@ -58,6 +59,7 @@
     
     <script>//=====================================================================</script>
     <script>
+        var alertMessage = document.getElementById('alertMessage1');
         function addToCart(name, price) {
             // initializing cookie from the browser
             let cart = getCookie('cart') ? JSON.parse(getCookie('cart')) : [];
@@ -292,11 +294,13 @@
                     update(ref(database, 'order/' + uid), orderData)
                     .then(() => {
                         console.log('Order checked out successfully');
-                        alert('Order checked out successfully');
+                        alertMessage.innerHTML = "Order checked out successfully";
+                        alertMessage.style.color = "red";
                     })
                     .catch(error => {
                         console.error('Error checking out order:', error);
-                        alert('Error Checking out order. Please try again later.');
+                        alertMessage.innerHTML = "Error Checking out order. Please try again later.";
+                        alertMessage.style.color = "red";
                     });
 
                 } else {

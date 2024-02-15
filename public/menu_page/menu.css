@@ -109,12 +109,16 @@ body {
     margin-left: 20px;
 }
 
-.header2,.orderheader{
+.header2,.orderheader,.alertMessage1{
     font-family: helvetica;
     font-weight: 750;
     font-size: 35px;
     margin-top: 20px;
     margin-left: 20px;
+}
+
+.alertMessage1{
+    font-size: 20px;
 }
 
 .main,.ordermain {

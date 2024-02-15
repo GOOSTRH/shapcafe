@@ -40,6 +40,7 @@ function signin(){
     // Getting all our input fields
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
+    var alertMessage = document.getElementById('SignupMessage1');
 
     // Validate input fields
     if (!validate_email(email)){

@@ -15,7 +15,7 @@
 <div class="TopDiv">
     <section class="LogoNav">
         <a class="LogoBtn" type="button" id="LogoBtn" href="../home_page/home.html">
-            <img class="Logo" src="../../Logostaff.png" alt="Go to Homepage">
+            <img class="Logo" src="../../logostaff.png" alt="Go to Homepage">
         </a>
     </section>
     <div class="header1">Orders</div>
@@ -26,7 +26,7 @@
     <script type="module">
         //imports
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js';
-        import { getDatabase, ref, update, onValue, set, get, onChildChanged, remove} from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
+        import { getDatabase, ref, update, onValue, set, get, onChildChanged, remove, onChildAdded} from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
         import { getFirestore, doc, getDocs, collection, where, query } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
         import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
 
@@ -51,7 +51,7 @@
         //=================================================================
 
         // reloads the page when a order is checked out
-        const orderRef = ref(database, "order/");
+        const orderRef = ref(database, "/");
         onChildChanged(orderRef, (snapshot) => {
             // Here you can perform actions based on the value, or refresh the page, etc.
             location.reload();
@@ -60,67 +60,91 @@
         // Loads when the website is fully loaded
         document.addEventListener("DOMContentLoaded", async function() {
             const databaseref = ref(database, 'order/');
+            
             const snapshot = await get(databaseref); // Get the initial snapshot
             console.log("Data under 'order/':", snapshot.val());
 
-            const promises = Object.keys(snapshot.val()).map(async (uid) => {
-                const childKey = uid; // user uid
-                const childData = snapshot.val()[uid]; // user order
+            try{
+                const promises = Object.keys(snapshot.val()).map(async (uid) => {
+                    const childKey = uid; // user uid
+                    const childData = snapshot.val()[uid]; // user order
 
-                const dbref = ref(database, 'users/' + childKey + '/email');
-                const snapshotEmail = await get(dbref);
-                const name = snapshotEmail.val().split('@')[0].replace(/\./g, ' ');
+                    const dbref = ref(database, 'users/' + childKey + '/email');
+                    const snapshotEmail = await get(dbref);
+                    const name = snapshotEmail.val().split('@')[0].replace(/\./g, ' ');
+
+                    const bodyItemsContainer = document.querySelector('.body');
+                    const main = `
+
+                        <section class="main user${uid}"></section>
+
+                    `;
+                    bodyItemsContainer.innerHTML += main;
+                    const mainItemsContainer = document.querySelector('.user' + uid);
+                    let totalPrice = 0;
+                    for (let key in childData) {
+                        let data = childData[key];
+                        totalPrice += (parseFloat(data.price) * parseFloat(data.quantity));
+                    }
+
+                    const top = `
+                        <h1 class="logo" id="type" >${name}</h1>
+                        
+                        <div class="totalPriceContainer">
+                            Total Price: <h1 class="totalPrice">${totalPrice}₱</h1>
+                        </div>
+                        <button class="OrderCompletebtn" id="OrderCompletebtn" style="display: block;" Onclick="OrderComplete('${uid}')">Order Complete</button>
+                        <hr>
+                        <div class="menus user${uid}">
+                    `;
+                    mainItemsContainer.innerHTML += top;
+
+                    const menusSection = document.querySelector('.user' + uid); // Get the reference to the menus section
+
+                    for (let key in childData) {
+                        let data = childData[key];
+                        const dish = `
+                        <div class="orderItem">
+                            <div class="itemInfo">
+                                <p class="dishName">${key}</p>
+                                <p class="quantity">Quantity: ${data.quantity}</p>
+                            </div>
+                            <p class="price">Price: ${data.price}</p>
+                        </div>
+                        `;
+                        menusSection.innerHTML += dish;
+                    }
+
+                    const bottom = `</div>`;
+                    mainItemsContainer.innerHTML += bottom;
+                });
+
+                // Wait for all promises to resolve
+                await Promise.all(promises);
+            }catch(error){
+
+                const realtimedbRef = ref(database, "/");
+                onChildAdded(realtimedbRef, (snapshot, previousChildKey) => {
+                    const addedData = snapshot.val();
+                    if(snapshot.key === "order") {
+                        location.reload();
+                    }
+                });
 
                 const bodyItemsContainer = document.querySelector('.body');
                 const main = `
 
-                    <section class="main user${uid}"></section>
+                    <section class="main nouser"></section>
+
 
                 `;
                 bodyItemsContainer.innerHTML += main;
-                const mainItemsContainer = document.querySelector('.user' + uid);
-                let totalPrice = 0;
-                for (let key in childData) {
-                    let data = childData[key];
-                    totalPrice += (parseFloat(data.price) * parseFloat(data.quantity));
-                }
-
+                const mainItemsContainer = document.querySelector('.nouser');
                 const top = `
-                    <h1 class="logo" id="type" >${name}</h1>
-                    
-                    <div class="totalPriceContainer">
-                        Total Price: <h1 class="totalPrice">${totalPrice}₱</h1>
-                    </div>
-                    <button class="OrderCompletebtn" id="OrderCompletebtn" style="display: block;" Onclick="OrderComplete('${uid}')">Order Complete</button>
-                    <hr>
-                    <div class="menus user${uid}">
+                    <h1 class="logo" id="type" >No orders yet</h1>
                 `;
                 mainItemsContainer.innerHTML += top;
-
-                const menusSection = document.querySelector('.user' + uid); // Get the reference to the menus section
-
-                for (let key in childData) {
-                    let data = childData[key];
-                    const dish = `
-                    <div class="orderItem">
-                        <div class="itemInfo">
-                            <p class="dishName">${key}</p>
-                            <p class="quantity">Quantity: ${data.quantity}</p>
-                        </div>
-                        <p class="price">Price: ${data.price}</p>
-                    </div>
-                    `;
-                    menusSection.innerHTML += dish;
-                }
-
-                const bottom = `
-                    </div>
-                `;
-                mainItemsContainer.innerHTML += bottom;
-            });
-
-            // Wait for all promises to resolve
-            await Promise.all(promises);
+            }
         });
 
 
@@ -134,6 +158,7 @@
             remove(elementRef) // remove the completed order from the database
             .then(() => {
                 console.log("Element removed successfully.");
+                location.reload();
             })
             .catch((error) => {
                 console.error("Error removing element:", error);
