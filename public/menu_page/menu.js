@@ -1,6 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js';
 import { getDatabase, ref, onValue} from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
-import { getFirestore, doc, getDocs, collection, where, query } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
 
 const firebaseConfig = {
@@ -18,22 +17,31 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
-const db = getFirestore(app);
 
 auth.onAuthStateChanged(function(user) {
-    let data = "N/A";
     if (user) {
       console.log("User is logged in:", user);
-
-      const dbref = ref(database, 'users/' + user.uid + '/user');
-      
-      onValue(dbref, (snapshot) => {
+      const dbUserRef = ref(database, 'users/' + user.uid + '/user');
+      onValue(dbUserRef, (snapshot) => {
         console.log("user permission:"+snapshot.val());
+        if(snapshot.val() == "admin"){ // if the user is admin, send him the to the admin pages
+          window.location.href = "../admin_page/home_page/home.html";
+        }
       });
 
+      // initialize a const value for refing the users last login
+      const dbLastLoginRef = ref(database, 'users/' + user.uid + '/last_login');
+      onValue(dbLastLoginRef, (snapshot) => {
+        // if last login history was 15 mins ago, send the user back to index.html
+        // which means, log in again
+        if(Date.now() - snapshot.val() > 900000){
+            console.log("NIGGER");
+            window.location.href = "../index.html"
+        }
+      });
     } else {
       console.log("User is logged out");
+      window.location.href = "../index.html";
       return;
     }
 });
-

@@ -261,17 +261,18 @@
             document.cookie = `cart=; expires=${new Date(0).toUTCString()}; path=/`;
             renderCart();
             let orderData = {};
+            var TotalPrice;
             cart.forEach((item) => {
                 const name = item.name;
                 const price = item.price;
                 const quantity = item.quantity;
+                TotalPrice += price;
 
                 // Create a data object for the current item
                 const data = {
                     price: price,
                     quantity: quantity
                 };
-
                 // Set the data object for the current item under the name key in orderData
                 orderData[name] = data;
 
@@ -290,11 +291,12 @@
                     // initializing user's uid to uis
                     uid = user.uid;
 
+                    update(ref(database, 'users/' + uid +'/TotalSpent'), TotalPrice)
                     // Update the database with orderData
                     update(ref(database, 'order/' + uid), orderData)
                     .then(() => {
                         console.log('Order checked out successfully');
-                        alertMessage.innerHTML = "Order checked out successfully";
+                        alertMessage.innerHTML = "Order checked out successfully.";
                         alertMessage.style.color = "red";
                     })
                     .catch(error => {
@@ -302,7 +304,7 @@
                         alertMessage.innerHTML = "Error Checking out order. Please try again later.";
                         alertMessage.style.color = "red";
                     });
-
+                    
                 } else {
                     console.log("User is logged out");
                     // changes page to index page
