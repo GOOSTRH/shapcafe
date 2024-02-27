@@ -4,7 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="menu.css">
     <title>Menu / SHAPCafeOnline</title>
-
     <link rel="shortcut icon" href="#" />
     <script> // |--- this line of code is for favion.ico error prevention, do not delete</script>
 
@@ -35,12 +34,9 @@
 
     <section class="ordermain">
         <div class="ordercontainer">
-
             <h1 class="orderheader">Shopping Cart</h2>
             <a class="alertMessage1" id="alertMessage1">TEST</a>
-
             <hr>
-            
             <table id="cart-table">
                 <thead>
                     <tr>
@@ -175,7 +171,7 @@
     <script type="module">
         //imports
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js';
-        import { getDatabase, ref, update, onValue, set} from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
+        import { getDatabase, ref, update, onValue, set,get,child} from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
         import { getFirestore, doc, getDocs, collection, where, query } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
         import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
 
@@ -249,72 +245,75 @@
         });
 
         function Checkout() {
-            // Get cart items from cookies
             const cart = getCookie('cart') ? JSON.parse(getCookie('cart')) : [];
 
-            // Do something with the cart items, such as sending them to the server or processing the checkout
-
-            // Example: Log cart items to the console
             console.log("Checkout - Cart Items:", cart);
 
-            // Example: Clear the cart after checkout
             document.cookie = `cart=; expires=${new Date(0).toUTCString()}; path=/`;
             renderCart();
-            let orderData = {};
-            var TotalPrice;
+            let TotalPrice = 0;
+
             cart.forEach((item) => {
-                const name = item.name;
-                const price = item.price;
-                const quantity = item.quantity;
-                TotalPrice += price;
-
-                // Create a data object for the current item
-                const data = {
-                    price: price,
-                    quantity: quantity
-                };
-                // Set the data object for the current item under the name key in orderData
-                orderData[name] = data;
-
-                console.log("data:", data);
-                console.log("order", orderData);
+                TotalPrice += item.price * item.quantity;
             });
 
-
-            // initialize users name ex. Jeehwan.Park
-            let name;
             let uid;
-            
-            // checking user's status to get 'user' variable
             auth.onAuthStateChanged(function(user) {
                 if (user) {
-                    // initializing user's uid to uis
                     uid = user.uid;
-
-                    set(ref(database, 'users/' + uid +'/TotalSpent'), TotalPrice + ref(database, 'users/' + uid +'/TotalSpent'))
-                    // Update the database with orderData
-                    update(ref(database, 'order/' + uid), orderData)
-                    .then(() => {
-                        console.log('Order checked out successfully');
-                        alertMessage.innerHTML = "Order checked out successfully.";
-                        alertMessage.style.color = "red";
-                    })
-                    .catch(error => {
-                        console.error('Error checking out order:', error);
-                        alertMessage.innerHTML = "Error Checking out order. Please try again later.";
-                        alertMessage.style.color = "red";
+                    let Totalspent;
+                    onValue(ref(database, 'users/' + uid + '/TotalSpent'), (snapshot) => {
+                        Totalspent = snapshot.val();
                     });
-                    
+                    Totalspent = parseInt(Totalspent) + parseInt(TotalPrice);
+
+                    // Fetch existing order data
+                    get(ref(database, 'order/' + uid)).then((snapshot) => {
+                        const existingOrders = snapshot.val() || {}; // Handle case where no orders exist yet
+                        let orderData = {}; // New order data to be updated
+
+                        // Merge existing orders with new orders
+                        cart.forEach((item) => {
+                            const name = item.name;
+                            const price = item.price;
+                            var quantity = item.quantity;
+
+                            if (existingOrders[name]) {
+                                // If the dish already exists in the order, accumulate the quantity
+                                quantity += existingOrders[name].quantity;
+                            }
+
+                            // Update order data
+                            orderData[name] = { price, quantity };
+                        });
+
+                        // Write the updated order data to the database
+                        set(ref(database, 'order/' + uid), orderData)
+                            .then(() => {
+                                console.log('Order checked out successfully');
+                                alertMessage.innerHTML = "Order checked out successfully.";
+                                alertMessage.style.color = "red";
+                                set(ref(database, 'users/' + uid + '/TotalSpent'), Totalspent);
+                            })
+                            .catch(error => {
+                                console.error('Error checking out order:', error);
+                                alertMessage.innerHTML = "Error Checking out order. Please try again later.";
+                                alertMessage.style.color = "red";
+                            });
+                    });
+
                 } else {
                     console.log("User is logged out");
-                    // changes page to index page
                     window.location.href = "/public/index.html";
                     return;
                 }
             });
         }
-        // globalize the funtion checkout
-        window.Checkout = Checkout; 
+
+        window.Checkout = Checkout;
+
+
+
     </script>
     <script type="module" src="menu.js"></script>
 </body>
