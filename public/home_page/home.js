@@ -35,7 +35,6 @@ auth.onAuthStateChanged(function(user) {
         // if last login history was 15 mins ago, send the user back to index.html
         // which means, log in again
         if(Date.now() - snapshot.val() > 900000){
-            console.log("NIGGER");
             window.location.href = "../index.html"
         }
       });

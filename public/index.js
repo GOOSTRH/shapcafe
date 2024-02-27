@@ -67,7 +67,7 @@ function signin(){
                 if( // admin list
                     email == "ShapCafeAdmin@proton.me"
                     ||
-                    email == "jeehwan.park@shap.edu.ph"
+                    email == "jeehwn.park@shap.edu.ph"
                     ||
                     email == "rosario.artanisren@shap.edu.ph"
                     ||

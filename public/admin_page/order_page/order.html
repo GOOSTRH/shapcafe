@@ -57,6 +57,8 @@
             location.reload();
         });
 
+        var ordercount = 0;
+
         // Loads when the website is fully loaded
         document.addEventListener("DOMContentLoaded", async function() {
             const databaseref = ref(database, 'order/');
@@ -65,7 +67,12 @@
             console.log("Data under 'order/':", snapshot.val());
 
             try{
+                
                 const promises = Object.keys(snapshot.val()).map(async (uid) => {
+                    if (uid == "dummy"){
+                        console.log("Dummy throw");
+                        throw "Breaking out of the try block";
+                    }
                     const childKey = uid; // user uid
                     const childData = snapshot.val()[uid]; // user order
 
@@ -89,7 +96,6 @@
 
                     const top = `
                         <h1 class="logo" id="type" >${name}</h1>
-                        
                         <div class="totalPriceContainer">
                             Total Price: <h1 class="totalPrice">${totalPrice}₱</h1>
                         </div>
@@ -117,33 +123,35 @@
 
                     const bottom = `</div>`;
                     mainItemsContainer.innerHTML += bottom;
+                    ordercount++;
                 });
 
                 // Wait for all promises to resolve
                 await Promise.all(promises);
             }catch(error){
-
-                const realtimedbRef = ref(database, "/");
+                var ordercount2 = 0;
+                const realtimedbRef = ref(database, "/order");
+                var addedData;
                 onChildAdded(realtimedbRef, (snapshot, previousChildKey) => {
-                    const addedData = snapshot.val();
-                    if(snapshot.key === "order") {
-                        location.reload();
-                    }
+                    addedData = snapshot.val();
+                    ordercount2++;
                 });
 
-                const bodyItemsContainer = document.querySelector('.body');
-                const main = `
-
-                    <section class="main nouser"></section>
-
-
-                `;
-                bodyItemsContainer.innerHTML += main;
-                const mainItemsContainer = document.querySelector('.nouser');
-                const top = `
-                    <h1 class="logo" id="type" >No orders yet</h1>
-                `;
-                mainItemsContainer.innerHTML += top;
+                if (ordercount2 > (ordercount + 1)){
+                    console.log(ordercount2 +" "+ ordercount);
+                    console.log(addedData);
+                }else if(ordercount2 == 1 && ordercount == 0){
+                    const bodyItemsContainer = document.querySelector('.body');
+                    const main = `
+                        <section class="main nouser"></section>
+                    `;
+                    bodyItemsContainer.innerHTML += main;
+                    const mainItemsContainer = document.querySelector('.nouser');
+                    const top = `
+                        <h1 class="logo" id="type" >No orders yet</h1>
+                    `;
+                    mainItemsContainer.innerHTML += top;
+                }
             }
         });
 

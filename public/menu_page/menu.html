@@ -291,7 +291,7 @@
                     // initializing user's uid to uis
                     uid = user.uid;
 
-                    update(ref(database, 'users/' + uid +'/TotalSpent'), TotalPrice)
+                    set(ref(database, 'users/' + uid +'/TotalSpent'), TotalPrice + ref(database, 'users/' + uid +'/TotalSpent'))
                     // Update the database with orderData
                     update(ref(database, 'order/' + uid), orderData)
                     .then(() => {
