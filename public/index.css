@@ -81,8 +81,10 @@ body {
 
 
 @media (max-width : 431px) { /* mobile */
-
-    
+  body {
+    background-color: rgb(240, 240, 240);
+    font-family: Arial, sans-serif; /* Change all font */
+  }
   .frm {
     background-color: white;
     border-radius: 30px;
@@ -119,98 +121,8 @@ body {
 }
 
 @media (max-width : 431px) { /* mobile */
-  body {
-    background-color: rgb(240,240,240); /* Set background color */
-    animation: scrollBackground 63s linear infinite; /* Apply animations to each background image */
-  }
-  body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
-    mix-blend-mode: multiply; /* Blend mode to make background images dimmer */
-    z-index: -1; /* Ensure the pseudo-element is behind the content */
-    background-position: center; /* Center the background images */
-  }
-
-  @keyframes scrollBackground {
-    0% {
-      background-image: url('bgpic/bgc1.jpg');
-      background-position: 0% 0%; /* Start positions for each background image */
-    } 5% {
-      background-image: url('bgpic/bgc2.jpg');
-      background-position: 10% 100%; /* Start positions for each background image */
-    } 10% {
-      background-image: url('bgpic/bgc3.jpg');
-      background-position: 20% 0%; /* Start positions for each background image */
-    } 15% {
-      background-image: url('bgpic/bgc4.jpg');
-      background-position: 30% 100%; /* Start positions for each background image */
-    } 20% {
-      background-image: url('bgpic/cbn1.jpg');
-      background-position: 40% 0%; /* Start positions for each background image */
-    } 25% {
-      background-image: url('bgpic/cbn2.jpg');
-      background-position: 50% 100%; /* Start positions for each background image */
-    } 30% {
-      background-image: url('bgpic/cbn3.jpg');
-      background-position: 60% 0%; /* Start positions for each background image */
-    } 35% {
-      background-image: url('bgpic/cbn4.jpg');
-      background-position: 70% 100%; /* Start positions for each background image */
-    } 40% {
-      background-image: url('bgpic/glr1.jpg');
-      background-position: 80% 0%; /* Start positions for each background image */
-    } 45% {
-      background-image: url('bgpic/hb1.jpg');
-      background-position: 90% 100%; /* Start positions for each background image */
-    } 50% {
-      background-image: url('bgpic/hb2.jpg');
-      background-position: 100% 0%; /* Start positions for each background image */
-    } 55% {
-      background-image: url('bgpic/psg1.jpg');
-      background-position: 90% 100%; /* Start positions for each background image */
-    } 60% {
-      background-image: url('bgpic/psg2.jpg');
-      background-position: 80% 0%; /* Start positions for each background image */
-    } 65% {
-      background-image: url('bgpic/psg3.jpg');
-      background-position: 70% 100%; /* Start positions for each background image */
-    } 70% {
-      background-image: url('bgpic/psg4.jpg');
-      background-position: 60% 0%; /* Start positions for each background image */
-    } 75% {
-      background-image: url('bgpic/ttt1.jpg');
-      background-position: 50% 100%; /* Start positions for each background image */
-    } 80% {
-      background-image: url('bgpic/ttt2.jpg');
-      background-position: 40% 0%; /* Start positions for each background image */
-    } 85% {
-      background-image: url('bgpic/ysb1.jpg');
-      background-position: 30% 100%; /* Start positions for each background image */
-    } 90% {
-      background-image: url('bgpic/ysb2.jpg');
-      background-position: 20% 0%; /* Start positions for each background image */
-    } 95% {
-      background-image: url('bgpic/ysb3.jpg');
-      background-position: 10% 100%; /* Start positions for each background image */
-    } 100% {
-      background-image: url('bgpic/ysb4.jpg');
-      background-position: 0% 0%; /* Start positions for each background image */
-    } 
-  }
-  body {
-    background-size: 35%;
-    background-position: center; /* Center the background images */
-  }
-
   
   .header {
-    -webkit-text-stroke-width: 2px; 
-    -webkit-text-stroke-color: black; 
     margin-top: 10%; /* Top margin */
     font-size: 25px; /* Font size */
     padding: 10px; /* Padding */
