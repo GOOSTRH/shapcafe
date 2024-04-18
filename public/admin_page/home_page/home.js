@@ -25,7 +25,6 @@ auth.onAuthStateChanged(function(user) {
       onValue(dbUserRef, (snapshot) => {
         console.log("user permission:"+snapshot.val());
         if(snapshot.val() == "admin"){ // if the user is admin, send him the to the admin pages
-          window.location.href = "../admin_page/home_page/home.html";
         }else{
           window.location.href = "../index.html";
         }

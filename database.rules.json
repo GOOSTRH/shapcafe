@@ -1,23 +1,21 @@
 {
   "rules": {
-      ".read": "auth != null",
-      ".write": "auth != null",    
+    ".read": "auth != null",
+    ".write": "auth != null",
     "users": {
       "$uid": {
         ".read": "$uid === auth.uid",
         ".write": "$uid === auth.uid",
-        "email":{
-          ".read": "auth != null",
-      		".write": "auth != null"
+        "email": {
+          ".read": "$uid === auth.uid", 
+          ".write": "$uid === auth.uid"
         }
       }
     },
     "order": {
-      ".read": "auth != null",
-      ".write": "auth != null",
       "$uid": {
-        ".read": "auth != null",
-        ".write": "auth != null"
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
       }
     }
   }
