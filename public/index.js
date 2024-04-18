@@ -40,10 +40,12 @@ window.addEventListener('DOMContentLoaded', function() {
         // Display mobile content
         mobileContent.style.display = 'block';
         pcContent.style.display = 'none';
+        alert("hellonigga");
     } else { // if wider
         // Display PC content
         mobileContent.style.display = 'none';
         pcContent.style.display = 'block';
+        alert("hellonigga");
     }
 });
 
