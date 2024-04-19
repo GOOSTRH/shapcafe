@@ -48,67 +48,67 @@
 }
 @keyframes scrollBackground {
     0% {
-        background-image: url('/public/bgpic/bgc1.jpg');
+        background-image: url('/public/bgpic/bgc1.jpg?v=1');
         background-position: 0% 0%; /* Start positions for each background image */
     } 5% {
-        background-image: url('/public/bgpic/bgc2.jpg');
+        background-image: url('/public/bgpic/bgc2.jpg?v=1');
         background-position: 10% 0%; /* Start positions for each background image */
     } 10% {
-        background-image: url('/public/bgpic/bgc3.jpg');
+        background-image: url('/public/bgpic/bgc3.jpg?v=1');
         background-position: 20% 0%; /* Start positions for each background image */
     } 15% {
-        background-image: url('/public/bgpic/bgc4.jpg');
+        background-image: url('/public/bgpic/bgc4.jpg?v=1');
         background-position: 30% 0%; /* Start positions for each background image */
     } 20% {
-        background-image: url('/public/bgpic/cbn1.jpg');
+        background-image: url('/public/bgpic/cbn1.jpg?v=1');
         background-position: 40% 0%; /* Start positions for each background image */
     } 25% {
-        background-image: url('/public/bgpic/cbn2.jpg');
+        background-image: url('/public/bgpic/cbn2.jpg?v=1');
         background-position: 50% 0%; /* Start positions for each background image */
     } 30% {
-        background-image: url('/public/bgpic/cbn3.jpg');
+        background-image: url('/public/bgpic/cbn3.jpg?v=1');
         background-position: 60% 0%; /* Start positions for each background image */
     } 35% {
-        background-image: url('/public/bgpic/cbn4.jpg');
+        background-image: url('/public/bgpic/cbn4.jpg?v=1');
         background-position: 70% 0%; /* Start positions for each background image */
     } 40% {
-        background-image: url('/public/bgpic/glr1.jpg');
+        background-image: url('/public/bgpic/glr1.jpg?v=1');
         background-position: 80% 0%; /* Start positions for each background image */
     } 45% {
-        background-image: url('/public/bgpic/hb1.jpg');
+        background-image: url('/public/bgpic/hb1.jpg?v=1');
         background-position: 90% 0%; /* Start positions for each background image */
     } 50% {
-        background-image: url('/public/bgpic/hb2.jpg');
+        background-image: url('/public/bgpic/hb2.jpg?v=1');
         background-position: 100% 0%; /* Start positions for each background image */
     } 55% {
-        background-image: url('/public/bgpic/psg1.jpg');
+        background-image: url('/public/bgpic/psg1.jpg?v=1');
         background-position: 110% 0%; /* Start positions for each background image */
     } 60% {
-        background-image: url('/public/bgpic/psg2.jpg');
+        background-image: url('/public/bgpic/psg2.jpg?v=1');
         background-position: 120% 0%; /* Start positions for each background image */
     } 65% {
-        background-image: url('/public/bgpic/psg3.jpg');
+        background-image: url('/public/bgpic/psg3.jpg?v=1');
         background-position: 130% 0%; /* Start positions for each background image */
     } 70% {
-        background-image: url('/public/bgpic/psg4.jpg');
+        background-image: url('/public/bgpic/psg4.jpg?v=1');
         background-position: 140% 0%; /* Start positions for each background image */
     } 75% {
-        background-image: url('/public/bgpic/ttt1.jpg');
+        background-image: url('/public/bgpic/ttt1.jpg?v=1');
         background-position: 150% 0%; /* Start positions for each background image */
     } 80% {
-        background-image: url('/public/bgpic/ttt2.jpg');
+        background-image: url('/public/bgpic/ttt2.jpg?v=1');
         background-position: 160% 0%; /* Start positions for each background image */
     } 85% {
-        background-image: url('/public/bgpic/ysb1.jpg');
+        background-image: url('/public/bgpic/ysb1.jpg?v=1');
         background-position: 170% 0%; /* Start positions for each background image */
     } 90% {
-        background-image: url('/public/bgpic/ysb2.jpg');
+        background-image: url('/public/bgpic/ysb2.jpg?v=1');
         background-position: 180% 0%; /* Start positions for each background image */
     } 95% {
-        background-image: url('/public/bgpic/ysb3.jpg');
+        background-image: url('/public/bgpic/ysb3.jpg?v=1');
         background-position: 190% 0%; /* Start positions for each background image */
     } 100% {
-        background-image: url('/public/bgpic/ysb4.jpg');
+        background-image: url('/public/bgpic/ysb4.jpg?v=1');
         background-position: 200% 0%; /* Start positions for each background image */
     } 
 }
