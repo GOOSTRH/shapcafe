@@ -44,3 +44,18 @@ auth.onAuthStateChanged(function(user) {
       return;
     }
 });
+
+window.addEventListener('DOMContentLoaded', function() {
+  var mobileContent = document.getElementById('mobile-content');
+  var pcContent = document.getElementById('pc-content');
+
+  if (window.innerWidth <= 431) { // if window width is <= 431px
+      // Display mobile content
+      mobileContent.style.display = 'block';
+      pcContent.style.display = 'none';
+  } else { // if wider
+      // Display PC content
+      mobileContent.style.display = 'none';
+      pcContent.style.display = 'block';
+  }
+});

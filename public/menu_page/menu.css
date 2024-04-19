@@ -1,17 +1,4 @@
-body {
-    background-color: rgb(240, 240, 240);
-    background-image: url("../background_2.png"), url("../background_1.png");
-    background-position: bottom  right, top left;
-    background-repeat: no-repeat, no-repeat;
-    background-attachment: fixed,fixed;
-    background-position-x: 0,0;
-    background-position-y: 0,0;
-    background-size: cover;
-    
-    margin-left: 3vw;
-    margin-right: 3vw;
-    margin-bottom: 20px;
-}
+
 
 .dish,.ordercontainer{
     position: relative; /* Position relative for the vertical line */
@@ -31,18 +18,11 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0, 0.6); /* Semi-transparent background */
+    background-color: rgba(240,240,240); /* Semi-transparent background */
     z-index: -1; /* Ensure it's on top of other elements */
 }
 
-.TopDiv {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(255, 255, 255, 1);
-    z-index: 1000;
-}
+
 
 .nav{
     text-align: center;
@@ -82,53 +62,12 @@ body {
 }
 
 
-.LogoBtn {
-    display: inline-block;
-    margin-top: 20px;
-    margin-left: 20px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0; /* Remove padding to ensure the image fits properly */
-    right: 10px;
-}
-
-
-.LogoBtn, .Logo {
-    width: 200px; /* Adjust image size as needed */
-    height: auto; /* Maintain aspect ratio */
-}
-
-
-
-.header1{
-    font-family: helvetica;
-    font-weight: 750;
-    font-size: 35px;
-    margin-top: 20px;
-    margin-left: 20px;
-}
-
-.header2,.orderheader,.alertMessage1{
-    font-family: helvetica;
-    font-weight: 750;
-    font-size: 35px;
-    margin-top: 20px;
-    margin-left: 20px;
-}
 
 .alertMessage1{
     font-size: 20px;
 }
 
-.main,.ordermain {
-    background-color: white;
-    border-radius: 50px;
-    padding: 20px;
-    margin-top: 30px;
-    font-family: helvetica;
-    font-size: 40px;
-}
+
 
 h1 {
     font-family: helvetica;
@@ -240,7 +179,54 @@ tr{
 
 
 @media (max-width : 790px) { /* mobile */
-    .body{
+    .main,.ordermain {
+        background-color: white;
+        border-radius: 50px;
+        padding: 15px;
+        margin-top: 10px;
+        font-family: helvetica;
+        font-size: 40px;
+    }
+    .header2,.orderheader,.alertMessage1{
+        font-family: helvetica;
+        font-weight: 750;
+        font-size: 30px;
+    }
+    .header1{
+        font-family: helvetica;
+        font-weight: 750;
+        font-size: 6vw;
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+    .LogoBtn {
+        display: inline-block;
+        margin-top: 20px;
+        margin-left: 20px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0; /* Remove padding to ensure the image fits properly */
+        right: 10px;
+    }
+    .LogoBtn, .Logo {
+        width: 120px; /* Adjust image size as needed */
+        height: auto; /* Maintain aspect ratio */
+    }
+    .TopDiv {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(255, 255, 255, 1);
+        z-index: 1000;
+    }
+    body {
+        background-color: rgb(240, 240, 240);
+        
+        margin-left: 3vw;
+        margin-right: 3vw;
+        margin-bottom: 20px;
         padding-top: 210px;
     }
     .ordermain{
@@ -267,7 +253,65 @@ tr{
     
 
 @media (min-width : 790px){ /* Pc, Tablet */
-    .body{
+    .main,.ordermain {
+        background-color: white;
+        border-radius: 50px;
+        padding: 20px;
+        margin-top: 30px;
+        font-family: helvetica;
+        font-size: 40px;
+    }
+    .header2,.orderheader,.alertMessage1{
+        font-family: helvetica;
+        font-weight: 750;
+        font-size: 35px;
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+    .header1{
+        font-family: helvetica;
+        font-weight: 750;
+        font-size: 35px;
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+    .LogoBtn {
+        display: inline-block;
+        margin-top: 20px;
+        margin-left: 20px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0; /* Remove padding to ensure the image fits properly */
+        right: 10px;
+    }
+
+
+    .LogoBtn, .Logo {
+        width: 200px; /* Adjust image size as needed */
+        height: auto; /* Maintain aspect ratio */
+    }
+    .TopDiv {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(255, 255, 255, 1);
+        z-index: 1000;
+    }
+    body {
+        background-color: rgb(240, 240, 240);
+        background-image: url("../background_2.png"), url("../background_1.png");
+        background-position: bottom  right, top left;
+        background-repeat: no-repeat, no-repeat;
+        background-attachment: fixed,fixed;
+        background-position-x: 0,0;
+        background-position-y: 0,0;
+        background-size: cover;
+        
+        margin-left: 3vw;
+        margin-right: 3vw;
+        margin-bottom: 20px;
         padding-top: 210px;
         display: flex;
     }

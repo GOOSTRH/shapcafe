@@ -1,6 +1,5 @@
 body {
     background-color: rgb(240, 240, 240);
-    background-image: url("../background_2.png"), url("../background_1.png");
     background-position: bottom  right, top left;
     background-repeat: no-repeat, no-repeat;
     background-attachment: fixed,fixed;
@@ -68,7 +67,7 @@ body {
 
 
 .LogoBtn, .Logo {
-    width: 200px; /* Adjust image size as needed */
+    width: 120px; /* Adjust image size as needed */
     height: auto; /* Maintain aspect ratio */
 }
 

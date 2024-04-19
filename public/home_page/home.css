@@ -1,44 +1,7 @@
-body {
-    background-color: rgb(240, 240, 240);
-    background-image: url("../background_2.png"), url("../background_1.png");
-    background-position: bottom  right, top left;
-    background-repeat: no-repeat, no-repeat;
-    background-attachment: fixed,fixed;
-    background-position-x: 0,0;
-    background-position-y: 0,0;
-    background-size: cover;
-}
-.TopDiv {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(255, 255, 255, 1);
-    z-index: 1000;
-}
-
 
 .nav {
     text-align: center; /* Center the buttons horizontally */
 }
-
-.btn {
-    display: inline-block; /* Make the buttons inline with the logo */
-    margin: 0 10px; /* Add some spacing between the buttons */
-    text-decoration: none;
-    padding: 10px 20px;
-    padding-bottom: 15px;
-    border: 2px solid transparent;
-    border-radius: 5px;
-    font-weight: bold;
-    position: relative; /* Position relative for the vertical line */
-    color: #000; /* Set text color */
-    background-color: transparent;
-    font-family: Helvetica;
-    transition: all 0.2s ease;
-}
-
-
 
 .btn:hover {
     transition-delay: 180ms;
@@ -53,23 +16,6 @@ body {
     left: -10px; /* Adjust the position to overlap with the previous button */
     width: 1px; /* Set width of the vertical line */
     background-color: black; /* Set color of the vertical line */
-}
-
-.LogoBtn {
-    display: inline-block;
-    margin-top: 20px;
-    margin-left: 20px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0; /* Remove padding to ensure the image fits properly */
-    right: 10px;
-}
-
-
-.LogoBtn, .Logo {
-    width: 200px; /* Adjust image size as needed */
-    height: auto; /* Maintain aspect ratio */
 }
 
 .visibledevice {
@@ -97,8 +43,183 @@ body {
     color: black;
 }
 
+.btn{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+@keyframes scrollBackground {
+    0% {
+        background-image: url('/public/bgpic/bgc1.jpg');
+        background-position: 0% 0%; /* Start positions for each background image */
+    } 5% {
+        background-image: url('/public/bgpic/bgc2.jpg');
+        background-position: 10% 0%; /* Start positions for each background image */
+    } 10% {
+        background-image: url('/public/bgpic/bgc3.jpg');
+        background-position: 20% 0%; /* Start positions for each background image */
+    } 15% {
+        background-image: url('/public/bgpic/bgc4.jpg');
+        background-position: 30% 0%; /* Start positions for each background image */
+    } 20% {
+        background-image: url('/public/bgpic/cbn1.jpg');
+        background-position: 40% 0%; /* Start positions for each background image */
+    } 25% {
+        background-image: url('/public/bgpic/cbn2.jpg');
+        background-position: 50% 0%; /* Start positions for each background image */
+    } 30% {
+        background-image: url('/public/bgpic/cbn3.jpg');
+        background-position: 60% 0%; /* Start positions for each background image */
+    } 35% {
+        background-image: url('/public/bgpic/cbn4.jpg');
+        background-position: 70% 0%; /* Start positions for each background image */
+    } 40% {
+        background-image: url('/public/bgpic/glr1.jpg');
+        background-position: 80% 0%; /* Start positions for each background image */
+    } 45% {
+        background-image: url('/public/bgpic/hb1.jpg');
+        background-position: 90% 0%; /* Start positions for each background image */
+    } 50% {
+        background-image: url('/public/bgpic/hb2.jpg');
+        background-position: 100% 0%; /* Start positions for each background image */
+    } 55% {
+        background-image: url('/public/bgpic/psg1.jpg');
+        background-position: 110% 0%; /* Start positions for each background image */
+    } 60% {
+        background-image: url('/public/bgpic/psg2.jpg');
+        background-position: 120% 0%; /* Start positions for each background image */
+    } 65% {
+        background-image: url('/public/bgpic/psg3.jpg');
+        background-position: 130% 0%; /* Start positions for each background image */
+    } 70% {
+        background-image: url('/public/bgpic/psg4.jpg');
+        background-position: 140% 0%; /* Start positions for each background image */
+    } 75% {
+        background-image: url('/public/bgpic/ttt1.jpg');
+        background-position: 150% 0%; /* Start positions for each background image */
+    } 80% {
+        background-image: url('/public/bgpic/ttt2.jpg');
+        background-position: 160% 0%; /* Start positions for each background image */
+    } 85% {
+        background-image: url('/public/bgpic/ysb1.jpg');
+        background-position: 170% 0%; /* Start positions for each background image */
+    } 90% {
+        background-image: url('/public/bgpic/ysb2.jpg');
+        background-position: 180% 0%; /* Start positions for each background image */
+    } 95% {
+        background-image: url('/public/bgpic/ysb3.jpg');
+        background-position: 190% 0%; /* Start positions for each background image */
+    } 100% {
+        background-image: url('/public/bgpic/ysb4.jpg');
+        background-position: 200% 0%; /* Start positions for each background image */
+    } 
+}
+@keyframes scrollBackground2 {
+    0% {background-image: url('/public/bgpic/bgc1.jpg'), url('/public/bgpic/bgc2.jpg'), url('/public/bgpic/bgc3.jpg'), url('/public/bgpic/bgc4.jpg'), url('/public/bgpic/cbn1.jpg'), url('/public/bgpic/cbn2.jpg'), url('/public/bgpic/cbn3.jpg'), url('/public/bgpic/cbn4.jpg'), url('/public/bgpic/glr1.jpg'), url('/public/bgpic/hb1.jpg'), url('/public/bgpic/hb2.jpg'), url('/public/bgpic/psg1.jpg'), url('/public/bgpic/psg2.jpg'), url('/public/bgpic/psg3.jpg'), url('/public/bgpic/psg4.jpg'), url('/public/bgpic/ttt1.jpg'), url('/public/bgpic/ttt2.jpg'), url('/public/bgpic/ysb1.jpg'), url('/public/bgpic/ysb2.jpg'),url('/public/bgpic/ysb3.jpg'), url('/public/bgpic/ysb4.jpg');
+        background-position: 
+        100% 0%,
+        50% 0%,
+        0% 0%,
+        -50% 0%,
+        -100% 0%,
+        -150% 0%,
+        -200% 0%,
+        -250% 0%,
+        -300% 0%,
+        -350% 0%,
+        -400% 0%,
+        -450% 0%,
+        -500% 0%,
+        -550% 0%,
+        -600% 0%,
+        -650% 0%,
+        -700% 0%,
+        -750% 0%,
+        -800% 0%,
+        -850% 0%,
+        -900% 0%;
+    }
+    100%{background-image: url('/public/bgpic/bgc1.jpg'), url('/public/bgpic/bgc2.jpg'), url('/public/bgpic/bgc3.jpg'), url('/public/bgpic/bgc4.jpg'), url('/public/bgpic/cbn1.jpg'), url('/public/bgpic/cbn2.jpg'), url('/public/bgpic/cbn3.jpg'), url('/public/bgpic/cbn4.jpg'), url('/public/bgpic/glr1.jpg'), url('/public/bgpic/hb1.jpg'), url('/public/bgpic/hb2.jpg'), url('/public/bgpic/psg1.jpg'), url('/public/bgpic/psg2.jpg'), url('/public/bgpic/psg3.jpg'), url('/public/bgpic/psg4.jpg'), url('/public/bgpic/ttt1.jpg'), url('/public/bgpic/ttt2.jpg'), url('/public/bgpic/ysb1.jpg'), url('/public/bgpic/ysb2.jpg'),url('/public/bgpic/ysb3.jpg'), url('/public/bgpic/ysb4.jpg');
+        background-position: 
+        1000% 0%,
+        950% 0%,
+        900% 0%,
+        850% 0%,
+        800% 0%,
+        750% 0%,
+        700% 0%,
+        650% 0%,
+        600% 0%,
+        550% 0%,
+        500% 0%,
+        450% 0%,
+        400% 0%,
+        350% 0%,
+        300% 0%,
+        250% 0%,
+        200% 0%,
+        150% 0%,
+        100% 0%,
+        50% 0%,
+        0% 0%;
+    }
+}
+
 
 @media (max-width : 750px) { /* mobile */
+    .scrollingImage{
+        scroll-behavior: smooth;
+        position: relative;
+        overflow: auto;
+        justify-content: left;
+        display: flex;
+        height: 100px;
+
+        background-size: 35%;
+        background-position: center; /* Center the background images */
+        background-repeat: no-repeat;
+    }
+    .scrollingImage {
+        background-color: rgb(200,200,200); /* Set background color */
+        animation: scrollBackground2 63s linear infinite; /* Apply animations to each background image */
+    }
+    .btn {
+        
+        display: inline-block; /* Make the buttons inline with the logo */
+        text-decoration: none;
+        border: 2px solid transparent;
+        border-radius: 5px;
+        font-weight: bold;
+        position: relative; /* Position relative for the vertical line */
+        color: #000; /* Set text color */
+        background-color: transparent;
+        font-family: Helvetica;
+        transition: all 0.2s ease;
+        
+    }
+
+    body {
+        background-color: rgb(240, 240, 240);
+    }
+    
+    .LogoBtn {
+        display: inline-block;
+        margin-top: 10px;
+        margin-left: 10px;
+        background-color:transparent;
+        cursor: pointer;
+    }
+    .LogoBtn, .Logo {
+        width: 120px; /* Adjust image size as needed */
+        height: auto; /* Maintain aspect ratio */
+    }
+    .TopDiv {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(255, 255, 255, 1);
+        z-index: 1000;
+    }
+
     .Logo, .LogoBtn{
         display: block;
     }
@@ -121,6 +242,54 @@ body {
 }
 
 @media (min-width : 750px) { /* PC and Tablet */
+    .btn {
+        display: inline-block; /* Make the buttons inline with the logo */
+        margin: 0 10px; /* Add some spacing between the buttons */
+        text-decoration: none;
+        padding: 10px 20px;
+        padding-bottom: 15px;
+        border: 2px solid transparent;
+        border-radius: 5px;
+        font-weight: bold;
+        position: relative; /* Position relative for the vertical line */
+        color: #000; /* Set text color */
+        background-color: transparent;
+        font-family: Helvetica;
+        transition: all 0.2s ease;
+    }
+    body {
+        background-color: rgb(240, 240, 240);
+        background-image: url("../background_2.png"), url("../background_1.png");
+        background-position: bottom  right, top left;
+        background-repeat: no-repeat, no-repeat;
+        background-attachment: fixed,fixed;
+        background-position-x: 0,0;
+        background-position-y: 0,0;
+        background-size: cover;
+    }    
+    .LogoBtn {
+        display: inline-block;
+        margin-top: 20px;
+        margin-left: 20px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0; /* Remove padding to ensure the image fits properly */
+        right: 10px;
+    }
+    .LogoBtn, .Logo {
+        width: 200px; /* Adjust image size as needed */
+        height: auto; /* Maintain aspect ratio */
+    }
+    .TopDiv {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(255, 255, 255, 1);
+        z-index: 1000;
+    }
+
     
     .LogoNav,
     .nav {

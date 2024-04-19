@@ -4,54 +4,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="menu.css">
     <title>Menu / SHAPCafeOnline</title>
-    <link rel="shortcut icon" href="#" />
-    <script> // |--- this line of code is for favion.ico error prevention, do not delete</script>
-
+    <link rel="shortcut icon" sizes="256x256" type="image/x-icon" href="/public/favicon.ico">
 </head>
 
 <div class="background"></div>
 
-<div class="TopDiv">
-    <section class="LogoNav">
-        <a class="LogoBtn" type="button" id="LogoBtn" href="../home_page/home.html">
-            <img class="Logo" src="../Logo.png" alt="Go to Homepage">
-        </a>
-    </section>
-    <div class="header1">Menus</div> 
-    <section class="nav">
-        <a class='maindish btn' href="menu.html">Dish</a>
-        <a class='sidedish btn' href="menusd.html">Side Dish</a>
-        <a class='other btn' href="menuo.html">Other</a>
-    </section>
+<div id="mobile-content">
+    <div class="TopDiv">
+        <section class="LogoNav">
+            <a class="LogoBtn" type="button" id="LogoBtn" href="../home_page/home.html">
+                <img class="Logo" src="../Logo.png" alt="Go to Homepage">
+            </a>
+        </section>
+        <div class="header1">Menus</div> 
+        <section class="nav">
+            <a class='maindish btn' href="menu.html">Dish</a>
+            <a class='sidedish btn' href="menusd.html">Side Dish</a>
+            <a class='other btn' href="menuo.html">Other</a>
+        </section>
+    </div>
+    
+    <body class="body">
+        <section class="main">
+            <div class="dish">
+                <h1 class="header2">Dish</h1>
+            </div>
+        </section>
+    
+        <section class="ordermain">
+            <div class="ordercontainer">
+                <h1 class="orderheader">Shopping Cart</h2>
+                <a class="alertMessage1" id="alertMessage1"></a>
+                <hr>
+                <table id="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-items">
+                        <!-- Cart items will be dynamically generated here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
 </div>
 
-<body class="body">
-    <section class="main">
-        <div class="dish">
-            <h1 class="header2">Dish</h1>
-        </div>
-    </section>
+<div id="pc-content">
+    <div class="TopDiv">
+        <section class="LogoNav">
+            <a class="LogoBtn" type="button" id="LogoBtn" href="../home_page/home.html">
+                <img class="Logo" src="../Logo.png" alt="Go to Homepage">
+            </a>
+        </section>
+        <div class="header1">Menus</div> 
+        <section class="nav">
+            <a class='maindish btn' href="menu.html">Dish</a>
+            <a class='sidedish btn' href="menusd.html">Side Dish</a>
+            <a class='other btn' href="menuo.html">Other</a>
+        </section>
+    </div>
+    
+    <body class="body">
+        <section class="main">
+            <div class="dish">
+                <h1 class="header2">Dish</h1>
+            </div>
+        </section>
+    
+        <section class="ordermain">
+            <div class="ordercontainer">
+                <h1 class="orderheader">Shopping Cart</h2>
+                <a class="alertMessage1" id="alertMessage1"></a>
+                <hr>
+                <table id="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-items">
+                        <!-- Cart items will be dynamically generated here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+</div>
 
-    <section class="ordermain">
-        <div class="ordercontainer">
-            <h1 class="orderheader">Shopping Cart</h2>
-            <a class="alertMessage1" id="alertMessage1">TEST</a>
-            <hr>
-            <table id="cart-table">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="cart-items">
-                    <!-- Cart items will be dynamically generated here -->
-                </tbody>
-            </table>
-        </div>
-    </section>
+
     
     <script>//=====================================================================</script>
     <script>
