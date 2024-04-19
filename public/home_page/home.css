@@ -47,7 +47,28 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 @keyframes scrollBackground2 {
-    0% {background-image: url('/bgpic/bgc1.jpg'), url('/bgpic/bgc2.jpg'), url('/bgpic/bgc3.jpg'), url('/bgpic/bgc4.jpg'), url('/bgpic/cbn1.jpg'), url('/bgpic/cbn2.jpg'), url('/bgpic/cbn3.jpg'), url('/bgpic/cbn4.jpg'), url('/bgpic/glr1.jpg'), url('/bgpic/hb1.jpg'), url('/bgpic/hb2.jpg'), url('/bgpic/psg1.jpg'), url('/bgpic/psg2.jpg'), url('/bgpic/psg3.jpg'), url('/bgpic/psg4.jpg'), url('/bgpic/ttt1.jpg'), url('/bgpic/ttt2.jpg'), url('/bgpic/ysb1.jpg'), url('/bgpic/ysb2.jpg'),url('/bgpic/ysb3.jpg'), url('/bgpic/ysb4.jpg');
+    0% {background-image:
+        url('/bgpic/bgc1.jpg?v=2'), 
+        url('/bgpic/bgc2.jpg?v=2'), 
+        url('/bgpic/bgc3.jpg?v=2'), 
+        url('/bgpic/bgc4.jpg?v=2'), 
+        url('/bgpic/cbn1.jpg?v=2'), 
+        url('/bgpic/cbn2.jpg?v=2'), 
+        url('/bgpic/cbn3.jpg?v=2'), 
+        url('/bgpic/cbn4.jpg?v=2'), 
+        url('/bgpic/glr1.jpg?v=2'), 
+        url('/bgpic/hb1.jpg?v=2'), 
+        url('/bgpic/hb2.jpg?v=2'), 
+        url('/bgpic/psg1.jpg?v=2'), 
+        url('/bgpic/psg2.jpg?v=2'), 
+        url('/bgpic/psg3.jpg?v=2'), 
+        url('/bgpic/psg4.jpg?v=2'), 
+        url('/bgpic/ttt1.jpg?v=2'), 
+        url('/bgpic/ttt2.jpg?v=2'), 
+        url('/bgpic/ysb1.jpg?v=2'), 
+        url('/bgpic/ysb2.jpg?v=2'),
+        url('/bgpic/ysb3.jpg?v=2'),
+        url('/bgpic/ysb4.jpg?v=2');
         background-position: 
         100% 0%,
         50% 0%,
@@ -71,7 +92,28 @@
         -850% 0%,
         -900% 0%;
     }
-    100%{background-image: url('/bgpic/bgc1.jpg'), url('/bgpic/bgc2.jpg'), url('/bgpic/bgc3.jpg'), url('/bgpic/bgc4.jpg'), url('/bgpic/cbn1.jpg'), url('/bgpic/cbn2.jpg'), url('/bgpic/cbn3.jpg'), url('/bgpic/cbn4.jpg'), url('/bgpic/glr1.jpg'), url('/bgpic/hb1.jpg'), url('/bgpic/hb2.jpg'), url('/bgpic/psg1.jpg'), url('/bgpic/psg2.jpg'), url('/bgpic/psg3.jpg'), url('/bgpic/psg4.jpg'), url('/bgpic/ttt1.jpg'), url('/bgpic/ttt2.jpg'), url('/bgpic/ysb1.jpg'), url('/bgpic/ysb2.jpg'),url('/bgpic/ysb3.jpg'), url('/bgpic/ysb4.jpg');
+    100%{background-image: 
+        url('/bgpic/bgc1.jpg?v=2'), 
+        url('/bgpic/bgc2.jpg?v=2'), 
+        url('/bgpic/bgc3.jpg?v=2'), 
+        url('/bgpic/bgc4.jpg?v=2'), 
+        url('/bgpic/cbn1.jpg?v=2'), 
+        url('/bgpic/cbn2.jpg?v=2'), 
+        url('/bgpic/cbn3.jpg?v=2'), 
+        url('/bgpic/cbn4.jpg?v=2'), 
+        url('/bgpic/glr1.jpg?v=2'), 
+        url('/bgpic/hb1.jpg?v=2'), 
+        url('/bgpic/hb2.jpg?v=2'), 
+        url('/bgpic/psg1.jpg?v=2'), 
+        url('/bgpic/psg2.jpg?v=2'), 
+        url('/bgpic/psg3.jpg?v=2'), 
+        url('/bgpic/psg4.jpg?v=2'), 
+        url('/bgpic/ttt1.jpg?v=2'), 
+        url('/bgpic/ttt2.jpg?v=2'), 
+        url('/bgpic/ysb1.jpg?v=2'), 
+        url('/bgpic/ysb2.jpg?v=2'),
+        url('/bgpic/ysb3.jpg?v=2'),
+        url('/bgpic/ysb4.jpg?v=2');
         background-position: 
         1000% 0%,
         950% 0%,
